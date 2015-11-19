@@ -27,37 +27,36 @@ class Test extends FlatSpec with Matchers with WebBrowser {
   go to "http://staging.stample.co/login"
   println(webDriver.manage().window().getSize)
 
-  "User" should "be able to sign up to Stample" in {
-    println("\n" + currentUrl + "\n")
-    // webDriver.findElement(By.cssSelector("li.cd-signin a")).click
-    // captureTo("./picture")
-    click on cssSelector("li.cd-signin a")
-    Thread.sleep(1000)
-    println("user modal form is displayed: " + webDriver.findElement(By.cssSelector("div.cd-user-modal")).isDisplayed)
-
+  "User" should "be able to login to Stample" in {
+    click on cssSelector("li.main-nav.cd-signin a")
     click on id("signin-email")
     textField(id("signin-email")).value = "simon.andreux@gmail.com"
-    println("user password field is displayed: " + webDriver.findElement(By.id("signin-password")).isDisplayed)
     click on id("signin-password")
-    pwdField(id("signin-password")).value = "e^(i*Pi)+1=0"
+    pwdField(id("signin-password")).value = "whatever"
     submit()
-    /*click on cssSelector("input#signup-username")
-    textField(cssSelector("input#signup-username")).value = "jagon"
-    click on cssSelector("input#signup-firstname")
-    textField(cssSelector("input#signup-firstname")).value = "simon"
-    click on cssSelector("input#signup-lastname")
-    textField(cssSelector("input#signup-lastname")).value = "andreux"
-    click on cssSelector("input#signup-password")
-    textField(cssSelector("input#signup-password")).value = "batterie"
-    click on checkbox(cssSelector("input#accept-terms"))
-    click on checkbox(cssSelector("input#signupFormSubmit"))*/
+  }
 
-    println("\n" + currentUrl + "\n")
-    /*click on "signin-password"
-    textField("signin-password").value  = "e^(i*Pi)+1=0"
-    submit()*/
-    //pageTitle should be("Amazon.com: Scala")
-    //pageSource should include("Scala Cookbook: Recipes")
+  "User" should "be able to log out Stample" in {
+    click on cssSelector("#menu div.settings-menu")
+    click on cssSelector("#menu div.settings-menu ul li:nth-child(5)")
+  }
+
+  "User" should "be able to sign up to Stample" in {
+    Thread.sleep(1000)
+    click on cssSelector("li.main-nav.cd-signup a")
+
+    click on id("signup-email")
+    emailField(id("signup-email")).value = "simon@stample.co"
+    click on id("signup-username")
+    textField(id("signup-username")).value = "JoDalton"
+    click on id("signup-firstname")
+    textField(id("signup-firstname")).value = "simon"
+    click on id("signup-lastname")
+    textField(id("signup-lastname")).value = "andreux"
+    click on id("signup-password")
+    pwdField(id("signup-password")).value = "batterie"
+    click on id("accept-terms")
+    submit()
   }
 
   /*"The amazon home page " should "have another this title" in {
