@@ -30,7 +30,7 @@ class Test extends FlatSpec with Matchers with WebBrowser {
   "User" should "be able to login to Stample" in {
     click on cssSelector("li.main-nav.cd-signin a")
     click on id("signin-email")
-    textField(id("signin-email")).value = "simon.andreux@gmail.com"
+    textField(id("signin-email")).value = "stampletest101@gmail.com"
     click on id("signin-password")
     pwdField(id("signin-password")).value = "whatever"
     submit()
@@ -46,15 +46,15 @@ class Test extends FlatSpec with Matchers with WebBrowser {
     click on cssSelector("li.main-nav.cd-signup a")
 
     click on id("signup-email")
-    emailField(id("signup-email")).value = "simon@stample.co"
+    emailField(id("signup-email")).value = "quelquun@stample.co"
     click on id("signup-username")
     textField(id("signup-username")).value = "JoDalton"
     click on id("signup-firstname")
-    textField(id("signup-firstname")).value = "simon"
+    textField(id("signup-firstname")).value = "moins"
     click on id("signup-lastname")
-    textField(id("signup-lastname")).value = "andreux"
+    textField(id("signup-lastname")).value = "exunard"
     click on id("signup-password")
-    pwdField(id("signup-password")).value = "batterie"
+    pwdField(id("signup-password")).value = "stample"
     click on id("accept-terms")
     submit()
   }
