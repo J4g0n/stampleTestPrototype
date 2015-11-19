@@ -9,12 +9,14 @@ scalaVersion := "2.11.7"
 
 
 libraryDependencies ++= Seq(
-  "org.scalatest"						%		"scalatest_2.10" 	%	"2.0",
+  "org.scalatest"						%		"scalatest_2.11" 	%	"2.2.1",
   "com.codeborne"						%		"phantomjsdriver" 	%	"1.2.1",
   // "com.github.detro"						%		"phantomjsdriver" 	%	"1.2.0",
   // "org.specs2" 							%%	"specs2" 					%	"2.1.1"			%	"test",
   "org.seleniumhq.selenium"	%		"selenium-java" 	%	"2.48.2"
 )
+
+testOptions in Test += Tests.Argument("-oD")
 
 // Uncomment to use Akka
 //libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.11"
