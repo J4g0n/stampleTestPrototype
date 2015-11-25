@@ -1,33 +1,13 @@
-import java.net.URL
-import java.util.concurrent.TimeUnit
-
-import org.openqa.selenium.{By, WebDriver}
-import org.openqa.selenium.phantomjs.{PhantomJSDriver, PhantomJSDriverService}
-import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapabilities}
+import org.openqa.selenium.WebDriver
 import org.scalatest.selenium.WebBrowser
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.{GivenWhenThen, FlatSpec, Matchers}
+import testConfig.TestConfig
 
 
-class Test extends FlatSpec with Matchers with WebBrowser {
+class Test extends FlatSpec with GivenWhenThen with Matchers with WebBrowser {
+  implicit val webDriver: WebDriver = TestConfig.webDriver
 
-  val baseCaps = new DesiredCapabilities
-  baseCaps.setCapability(CapabilityType.SUPPORTS_FINDING_BY_CSS, true)
-
-  // PhantomJS Capabilities
-  //baseCaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/usr/local/bin/phantomjs")
-  //baseCaps.setCapability("takesScreenshot", true)
-  //baseCaps.setCapability("elementScrollBehavior", 1)
-  //baseCaps.setBrowserName("phantomjs")
-
-  System.setProperty("webdriver.chrome.driver", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-
-  implicit val webDriver: WebDriver = new RemoteWebDriver(new URL("http://localhost:9515"), DesiredCapabilities.chrome())
-
-  //webDriver.manage().window().setSize(new org.openqa.selenium.Dimension(1920, 1080))
-  webDriver.manage().window().maximize()
-  webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
   go to "http://staging.stample.co/login"
-  println(webDriver.manage().window().getSize)
 
   "User" should "be able to login to Stample" in {
     click on cssSelector("li.main-nav.cd-signin a")
@@ -38,7 +18,7 @@ class Test extends FlatSpec with Matchers with WebBrowser {
     submit()
   }
 
-  "User" should "be able to log out Stample" in {
+  "User" should "be able to log out of Stample" in {
     click on cssSelector("#menu div.settings-menu")
     click on cssSelector("#menu div.settings-menu ul li:nth-child(5)")
   }
@@ -71,7 +51,7 @@ class Test extends FlatSpec with Matchers with WebBrowser {
     click on cssSelector("#category-creation .category-creation-button")
   }
 
-  "The amazon home page " should "have another this title" in {
+  "The amazon home page " should "have another title when searching" in {
     go to "http://www.amazon.com"
     click on "twotabsearchtextbox"
     textField("twotabsearchtextbox").value  = "Scala"
