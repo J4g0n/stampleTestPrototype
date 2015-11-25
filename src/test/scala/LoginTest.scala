@@ -1,9 +1,13 @@
+import org.openqa.selenium.WebDriver
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
-import pageObjects.StampleHomePage
+import pageObjects.HomePage
 import testConfig.TestConfig
 
 
-class StampleHomePageTest extends FeatureSpec with GivenWhenThen with Matchers {
+class LoginTest extends FeatureSpec with GivenWhenThen with Matchers {
+  // TODO i don't like having implicit everywhere in the code, we should find a way to make them disappear
+  implicit val webDriver: WebDriver = TestConfig.webDriver
+
   val username: String = "Username"
   val password: String = "Password"
   val baseUrl: String = TestConfig.baseUrl
@@ -18,15 +22,15 @@ class StampleHomePageTest extends FeatureSpec with GivenWhenThen with Matchers {
     scenario("User sign in from homepage") {
 
       Given("User connect to the Stample homepage")
-      val stampleHomePage = new StampleHomePage
-      stampleHomePage.openPage
-      assert(stampleHomePage.isCurrentUrlEqualsTo(baseUrl + "login")) // We could use assert too, dunno which one is clearer
+      val homePage = new HomePage
+      homePage.openPage
+      assert(homePage.isCurrentUrlEqualsTo(baseUrl + "login")) // We could use assert too, dunno which one is clearer
 
       When("User fills sign in form and submit")
-      val stampleApp = stampleHomePage.signInWith(username, password)
+      val appMainPage = homePage.signInWith(username, password)
 
       Then("User should have access to its content on Stample")
-      stampleApp.stampleRootDisplayed
+      appMainPage.stampleRootDisplayed
     }
 
 /*    scenario("User sign from his mobile") {

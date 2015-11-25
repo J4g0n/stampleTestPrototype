@@ -5,10 +5,12 @@ import org.scalatest.selenium.WebBrowser
 import testConfig.TestConfig
 
 
-abstract class BasePageObject (pageUrl: String) extends WebBrowser {
+abstract class BasePage (pageUrl: String) extends WebBrowser {
   implicit val webDriver: WebDriver = TestConfig.webDriver
 
   def openPage = go to pageUrl
 
-  def isCurrentPage = pageUrl == currentUrl
+  def closePage = close
+
+  def quitBrowser = quit
 }

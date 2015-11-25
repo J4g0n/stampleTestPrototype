@@ -63,9 +63,7 @@ object TestConfig {
 
   private def createWebDriver: WebDriver = {
     val webDriver: WebDriver = testConfig match {
-      case TestConfig("chrome", _, _) => {
-        createChromeDriver
-      }
+      case TestConfig("chrome", _, _) => createChromeDriver
       case _ => createPhantomJSDriver
     }
     setFullscreen(webDriver)
