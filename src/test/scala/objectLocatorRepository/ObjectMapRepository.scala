@@ -9,13 +9,13 @@ case class Selector(keyId: String, selectorType: String)
 trait ObjectMapRepository {
   this: WebBrowser =>
 
-  val objectMap = Map(
+  private val objectMap = Map(
     ("homepage.loginButton", Selector("li.main-nav.cd-signin a", "css")),
     ("homepage.signInText", Selector("signin-email", "id")),
     ("homepage.signInPassword", Selector("signin-password", "id"))
   )
 
-  def loadFromFile = ???
+  def loadObjectMapFromFile = ???
 
   implicit def getLocator(keyId: String): this.Query = {
     objectMap.get(keyId).map {

@@ -1,12 +1,9 @@
-import org.openqa.selenium.WebDriver
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
 import pageObjects.HomePage
 import testConfig.TestConfig
 
 
 class LoginTest extends FeatureSpec with GivenWhenThen with Matchers {
-  // TODO i don't like having implicit everywhere in the code, we should find a way to make them disappear
-  implicit val webDriver: WebDriver = TestConfig.webDriver
 
   val username: String = "Username"
   val password: String = "Password"
