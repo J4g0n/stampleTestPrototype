@@ -10,12 +10,14 @@ trait ObjectMapRepository {
   this: WebBrowser =>
 
   val objectMap = Map(
-    ("stample.homepage.loginButton", Selector("li.main-nav.cd-signin a", "css")),
-    ("stample.homepage.signInText", Selector("signin-email", "id")),
-    ("stample.homepage.signInPassword", Selector("signin-password", "id"))
+    ("homepage.loginButton", Selector("li.main-nav.cd-signin a", "css")),
+    ("homepage.signInText", Selector("signin-email", "id")),
+    ("homepage.signInPassword", Selector("signin-password", "id"))
   )
 
-  def getLocator(keyId: String) = {
+  def loadFromFile = ???
+
+  implicit def getLocator(keyId: String): this.Query = {
     objectMap.get(keyId).map {
       case Selector(selector, "id") => id(selector)
       case Selector(selector, "css") => cssSelector(selector)
