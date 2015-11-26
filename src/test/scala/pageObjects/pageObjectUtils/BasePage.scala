@@ -8,6 +8,8 @@ import testConfig.TestConfig
 abstract class BasePage (pageUrl: String) extends WebBrowser {
   implicit val webDriver: WebDriver = TestConfig.webDriver
 
+  def isCurrentUrlEqualsTo(url: String): Boolean = currentUrl == url
+
   def openPage = {
     deleteAllCookies
     go to pageUrl

@@ -19,7 +19,6 @@ class TestLogin extends FeatureSpec with GivenWhenThen with Matchers {
     scenario("User sign in from homepage menu") {
 
       Given("User connect to the Stample homepage")
-      Thread.sleep(4000)
       val homePage = new HomePage
       homePage.openPage
       assert(homePage.isCurrentUrlEqualsTo(baseUrl + "login"))
@@ -28,7 +27,7 @@ class TestLogin extends FeatureSpec with GivenWhenThen with Matchers {
       val appMainPage = homePage.signInWith(username, password)
 
       Then("User should have access to its content on Stample")
-      appMainPage.stampleRootDisplayed
+      assert(appMainPage.stampleRootDisplayed)
     }
 
 /*    scenario("User sign from his mobile") {

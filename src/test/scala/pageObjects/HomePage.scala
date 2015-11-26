@@ -6,8 +6,6 @@ import testConfig.TestConfig
 
 
 class HomePage extends BasePage(TestConfig.baseUrl) with HomePageElements with LoginPageElements with SignupPageElements {
-  def isCurrentUrlEqualsTo(url: String): Boolean = currentUrl == url
-
   def signInWith(username: String, password: String): AppMainPage = {
     click on HOMEPAGE_LOGIN_BUTTON
     click on SIGNIN_EMAIL_TEXTFIELD

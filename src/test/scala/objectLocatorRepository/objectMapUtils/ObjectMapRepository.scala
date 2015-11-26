@@ -18,26 +18,27 @@ object ObjectMap {
     ("signup.firstname", SelectorItem("signup-firstname", "id")),
     ("signup.lastname", SelectorItem("signup-lastname", "id")),
     ("signup.password", SelectorItem("signup-password", "id")),
-    ("signup.acceptTerms", SelectorItem("accept-terms", "id"))
+    ("signup.acceptTerms", SelectorItem("accept-terms", "id")),
+
+    ("new.button", SelectorItem("#new-button .new-button-icon", "css")),
+    ("new.stample", SelectorItem("#new-button-icon .new-stample", "css"))
   )
 }
 
-trait ObjectMapRepository {
-  // TODO I would like to remove that dependency need but don't know how yet, maybe with a trait that is using WebBrowser as a proxy
-  this: WebBrowser =>
+// TODO I would like to remove dependency need to WebBrowser but don't know how yet, maybe with a trait that is using WebBrowser as a proxy
+trait ObjectMapRepository extends WebBrowser {
   type Selector = this.Query
 
   private val objectMap = ObjectMap.objectMap
 
-  def loadObjectMapFromFile = ???
+  def loadObjectMapFromFile = ??? // TODO implement a way to load map object resources from a file
 
-  implicit def getLocator(keyId: String): this.Query = {
+  implicit def getLocator(keyId: String): Selector = {
       objectMap.get(keyId).map {
         case SelectorItem(selector, "id") => id(selector)
         case SelectorItem(selector, "css") => cssSelector(selector)
         case SelectorItem(selector, "xpath") => xpath(selector)
         case SelectorItem(selector, "class") => className(selector)
-        case SelectorItem(selector, "classname") => className(selector)
         case _ => throw new Error("Invalid selector type. Currently selectors allowed are: 'css' and 'id'")
       }.get
   }
