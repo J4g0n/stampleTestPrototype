@@ -6,9 +6,9 @@ import org.scalatest.selenium.WebBrowser
 /**
   * Created by dev on 26/11/15.
   */
-trait HomePageElements extends ObjectMapRepository {
+trait LoginPageElements extends ObjectMapRepository {
   this: WebBrowser =>
 
-  val HOMEPAGE_LOGIN_BUTTON: Selector = "homepage.login"
-  val HOMEPAGE_SIGNUP_BUTTON: Selector = "homepage.signup"
+  val SIGNIN_EMAIL_TEXTFIELD: Selector = "signin.email"
+  val SIGNIN_PASSWORD_TEXTFIELD: Selector = "signin.password"
 }
