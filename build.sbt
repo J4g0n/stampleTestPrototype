@@ -18,6 +18,10 @@ libraryDependencies ++= Seq(
 
 testOptions in Test += Tests.Argument("-oD")
 
+parallelExecution in Test := false
+concurrentRestrictions in Global += Tags.limit(Tags.Test, 1)
+//parallelExecution in ScctPlugin.ScctTest := false
+
 // Uncomment to use Akka
 //libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.11"
 

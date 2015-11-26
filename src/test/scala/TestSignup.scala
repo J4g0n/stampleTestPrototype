@@ -33,7 +33,6 @@ class TestSignup extends FeatureSpec with GivenWhenThen with Matchers {
 
       Then("User should have access to its content on Stample")
       appMainPage.stampleRootDisplayed
-      appMainPage.quitBrowser
     }
 
 /*    scenario("User sign from his mobile") {
