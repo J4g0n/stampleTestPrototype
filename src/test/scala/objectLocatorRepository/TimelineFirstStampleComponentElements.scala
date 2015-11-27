@@ -1,6 +1,6 @@
 package objectLocatorRepository
 
-import objectLocatorRepository.objectMapUtils.ObjectMapRepository
+import objectLocatorRepository.objectMapUtils.{Selector, ObjectMapRepository}
 
 /**
   * Created by dev on 27/11/15.
