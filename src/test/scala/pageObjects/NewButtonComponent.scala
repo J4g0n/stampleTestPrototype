@@ -7,7 +7,8 @@ import objectLocatorRepository.NewButtonComponentElements
   */
 class NewButtonComponent extends AppMainPage with NewButtonComponentElements {
   def openStampleCreator = {
-    click on NEW_BUTTON
+    hover (NEW_BUTTON)
+    Thread.sleep(500) // Required because of css animation, that sucks...
     click on NEW_STAMPLE
 
     new StampleCreatorComponent

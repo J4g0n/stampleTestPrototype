@@ -1,11 +1,11 @@
 package pageObjects.pageObjectUtils
 
 import org.openqa.selenium.WebDriver
-import org.scalatest.selenium.WebBrowser
+import testUtils.WebBrowserCustom
 import testConfig.TestConfig
 
 
-abstract class BasePage (pageUrl: String) extends WebBrowser {
+abstract class BasePage (pageUrl: String = TestConfig.baseUrl) extends WebBrowserCustom {
   implicit val webDriver: WebDriver = TestConfig.webDriver
 
   def isCurrentUrlEqualsTo(url: String): Boolean = currentUrl == url

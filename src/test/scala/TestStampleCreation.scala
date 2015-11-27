@@ -1,11 +1,13 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
-import pageObjects.{NewButtonComponent, HomePage}
-import testConfig.TestConfig
+import pageObjects.HomePage
 
 
 class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers {
   val username: String = "Username"
   val password: String = "Password"
+  val title: String = "My custom title"
+  val summary: String = "My summary"
+  val description: String = "My super duper description"
 
   info("As a User")
   info("I want to be able to create a new Stample")
@@ -17,13 +19,17 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers {
       Given("User is connected to Stample")
       val homePage = new HomePage
       homePage.openPage
-      homePage.signInWith(username, password)
-      val newButtonComponent = new NewButtonComponent
-      newButtonComponent.openStampleCreator
+      val appMainPage = homePage.signInWith(username, password)
+      val stampleEditorComponent = appMainPage
+        .getNewButton
+        .openStampleCreator
 
-      When("User fills sign in form and submit")
+      When("User fills stample and save it")
+      stampleEditorComponent.fillStample(title, summary, description)
+      stampleEditorComponent.saveStample
 
-      Then("User should have access to its content on Stample")
+      Then("stample should appear on timeline")
+      assert(appMainPage.getTimelineFirstStample.getTitle == title)
     }
 
     /*    scenario("User sign from his mobile") {

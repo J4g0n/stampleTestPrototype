@@ -21,7 +21,17 @@ object ObjectMap {
     ("signup.acceptTerms", SelectorItem("accept-terms", "id")),
 
     ("new.button", SelectorItem("#new-button .new-button-icon", "css")),
-    ("new.stample", SelectorItem("#new-button-icon .new-stample", "css"))
+    ("new.stample", SelectorItem("#new-button .new-stample", "css")),
+
+    ("stampleCreator.title", SelectorItem(".stample-creation .title", "css")),
+    ("stampleCreator.summary", SelectorItem(".stample-creation .summary", "css")),
+    ("stampleCreator.description", SelectorItem(".stample-creation .description", "css")),
+    ("stampleCreator.saveButton", SelectorItem(".stample-creation .save-and-quit", "css")),
+    ("stampleCreator.reminderButton", SelectorItem(".stample-creation .reminder", "css")),
+
+    ("timeline.firstStample.title", SelectorItem("#stamples span:nth-child(1) .title", "css")), // Sloppy selector but i don't want to introduce dependencies between selectors at least for now :/
+    ("timeline.firstStample.summary", SelectorItem("#stamples span:nth-child(1) .summary", "css")),
+    ("timeline.firstStample.description", SelectorItem("#stamples span:nth-child(1) .description", "css"))
   )
 }
 
@@ -54,4 +64,5 @@ object pimpedWebBrowser {
       }.get
     }
   }
-}*/
+}
+*/
