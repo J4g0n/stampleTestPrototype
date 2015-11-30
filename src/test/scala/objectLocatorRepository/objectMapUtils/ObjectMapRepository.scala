@@ -21,11 +21,11 @@ object ObjectMap {
     ("new.button", Selector("#new-button .new-button-icon", "css")),
     ("new.stample", Selector("#new-button .new-stample", "css")),
 
-    ("stampleCreator.title", Selector(".stample-creation .title", "css")),
-    ("stampleCreator.summary", Selector(".stample-creation .summary", "css")),
-    ("stampleCreator.description", Selector(".stample-creation .description", "css")),
-    ("stampleCreator.saveButton", Selector(".stample-creation .save-and-quit", "css")),
-    ("stampleCreator.reminderButton", Selector(".stample-creation .reminder", "css")),
+    ("stampleCreator.title", Selector(".stample-creation .stample-creation-title input", "css")),
+    ("stampleCreator.summary", Selector(".stample-creation .stample-creation-summary input", "css")),
+    ("stampleCreator.description", Selector(".stample-creation .stample-creation-description", "css")),
+    ("stampleCreator.saveButton", Selector(".stample-creation-tool-bar .save-and-quit", "css")),
+    ("stampleCreator.reminderButton", Selector(".stample-creation-tool-bar .reminder", "css")),
 
     ("timeline.firstStample.title", Selector("#stamples span:nth-child(1) .title", "css")), // Sloppy selector but i don't want to introduce dependencies between selectors at least for now :/
     ("timeline.firstStample.summary", Selector("#stamples span:nth-child(1) .summary", "css")),

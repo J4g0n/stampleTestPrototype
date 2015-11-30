@@ -4,12 +4,12 @@ import java.net.URL
 import java.util.concurrent.TimeUnit
 
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.phantomjs.{PhantomJSDriver, PhantomJSDriverService}
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapabilities}
 
 
 case class TestConfig (
-                        browser: String = "chrome",
+                        browser: String = "firefox",
                         baseUrl: String = "http://staging.stample.co/",
                         size: Option[(Int, Int)] = None
                       )
@@ -33,29 +33,39 @@ object TestConfig {
   private def createChromeDriver: WebDriver = {
     System.setProperty("webdriver.chrome.driver", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
-    // /!\ Requires chromeDriver to be started on port 9515
-    new RemoteWebDriver(new URL("http://localhost:9515"), DesiredCapabilities.chrome())
+    new RemoteWebDriver(new URL("http://localhost:9515"), DesiredCapabilities.chrome)
   }
 
   private def createPhantomJSDriver: WebDriver = {
-    val baseCaps = getDefaultCapabilities
-
-    baseCaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/usr/local/bin/phantomjs")
+    val baseCaps = DesiredCapabilities.phantomjs
+    baseCaps.setCapability(CapabilityType.SUPPORTS_FINDING_BY_CSS, true)
+    baseCaps.setJavascriptEnabled(true)
     baseCaps.setCapability("takesScreenshot", true)
-    baseCaps.setCapability("elementScrollBehavior", 1)
-    baseCaps.setBrowserName("phantomjs")
 
-    // TODO we should investigate RemoteWebDriver to use phantomJS too
-    new PhantomJSDriver(baseCaps)
+    //baseCaps.setCapability("elementScrollBehavior", 1)
+    //baseCaps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/usr/local/bin/phantomjs")
+
+    new RemoteWebDriver(new URL("http://localhost:4444"), baseCaps)
+  }
+
+  private def createFirefoxWebDriver: WebDriver = {
+    val baseCaps = DesiredCapabilities.firefox
+    System.setProperty("webdriver.firefox.bin","/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin")
+    //val profile = new ProfilesIni
+    //val firefoxProfile = profile.getProfile("Library/Application Support/Firefox/Profiles/0xd5cpw0.dev-edition-default/")
+    //baseCaps.setCapability("marionette", true)
+
+    new FirefoxDriver(baseCaps)
   }
 
   private def setFullscreen(webDriver: WebDriver): WebDriver = {
-    //webDriver.manage().window().setSize(new org.openqa.selenium.Dimension(1920, 1080))
-    webDriver.manage().window().maximize()
+    testConfig.size match {
+      case Some(dimensions) => webDriver.manage().window().setSize(new org.openqa.selenium.Dimension(dimensions._1, dimensions._2))
+      case _ => webDriver.manage().window().maximize()
+    }
     webDriver
   }
 
-  // This represents the waiting time before an element is loaded inside a web page before we can perform action
   private def setMaxTimeoutBetweenActions(webDriver: WebDriver, seconds: Int): WebDriver = {
     webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
     webDriver
@@ -64,9 +74,10 @@ object TestConfig {
   private def createWebDriver: WebDriver = {
     val webDriver: WebDriver = testConfig match {
       case TestConfig("chrome", _, _) => createChromeDriver
-      case _ => createPhantomJSDriver
+      case TestConfig("phantomjs", _, _) => createPhantomJSDriver
+      case TestConfig("firefox", _, _) => createFirefoxWebDriver
     }
-    setFullscreen(webDriver)
     setMaxTimeoutBetweenActions(webDriver, 10)
+    setFullscreen(webDriver)
   }
 }
