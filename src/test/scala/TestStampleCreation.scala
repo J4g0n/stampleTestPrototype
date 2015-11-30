@@ -32,8 +32,8 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers {
       assert(appMainPage.getTimelineFirstStample.getTitle == title)
     }
 
-    /*    scenario("User sign from his mobile") {
+    /*scenario("User sign from his mobile") {
 
-        }*/
+    }*/
   }
 }

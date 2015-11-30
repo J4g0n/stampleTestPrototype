@@ -28,14 +28,8 @@ abstract class BasePage (pageUrl: String = TestConfig.baseUrl) extends WebBrowse
       case ClassSelector(selectorClass) => className(selectorClass)
       case _ => throw new Error("Invalid selector type. Currently selectors allowed are: 'css' and 'id'")
     }
-
     //new WebDriverWait(webDriver, 30).until(ExpectedConditions.visibilityOfElementLocated(selectedElement.by))
-    /*find(selectedElement).get match {
-      case v: TextField => v.clear
-      case v: PasswordField => v.clear
-      case x: ValueElement => x.clear
-      case x => println(x)
-    }*/
+
     selectedElement
   }
 }

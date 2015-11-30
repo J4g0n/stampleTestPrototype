@@ -1,11 +1,11 @@
 package pageObjects
 
-import objectLocatorRepository.{SignupPageElements, LoginPageElements, HomePageElements}
+import objectLocatorRepository.{SignupPageSelectors, LoginPageSelectors, HomePageSelectors}
 import pageObjects.pageObjectUtils.BasePage
 import testConfig.TestConfig
 
 
-class HomePage extends BasePage(TestConfig.baseUrl) with HomePageElements with LoginPageElements with SignupPageElements {
+class HomePage extends BasePage(TestConfig.baseUrl) with HomePageSelectors with LoginPageSelectors with SignupPageSelectors {
   def signInWith(username: String, password: String): AppMainPage = {
     click on HOMEPAGE_LOGIN_BUTTON
     click on SIGNIN_EMAIL_TEXTFIELD

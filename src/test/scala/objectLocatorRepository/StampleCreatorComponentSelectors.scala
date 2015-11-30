@@ -5,7 +5,7 @@ import objectLocatorRepository.objectMapUtils.{Selector, ObjectMapRepository}
 /**
   * Created by dev on 26/11/15.
   */
-trait StampleCreatorComponentElements extends ObjectMapRepository {
+trait StampleCreatorComponentSelectors extends ObjectMapRepository {
   val STAMPLE_CREATOR_TITLE_FIELD: Selector = "stampleCreator.title"
   val STAMPLE_CREATOR_SUMMARY_FIELD: Selector = "stampleCreator.summary"
   val STAMPLE_CREATOR_DESCRIPTION_FIELD: Selector = "stampleCreator.description"
