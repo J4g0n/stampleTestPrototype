@@ -17,9 +17,12 @@ class AppMainPage extends BasePage(TestConfig.baseUrl) {
     new StampleCreatorComponent
   }
 
-  // Select index stample would be a better idea
-  def getTimelineFirstStample = {
-    new TimelineFirstStampleComponent
+  def getNavigation = {
+    new NavigationBarComponent
+  }
+
+  def getTimeline = {
+    new TimelineComponent
   }
 }
 

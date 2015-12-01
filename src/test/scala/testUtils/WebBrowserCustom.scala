@@ -18,6 +18,10 @@ class WebBrowserCustom extends WebBrowser {
     hover(selector)
   }
 
+  def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = {
+    findAll(s).drop(n).next
+  }
+
   class fill(s: this.Query) {
     def withText(content: String)(implicit webDriver: WebDriver): Unit = {
       click on s

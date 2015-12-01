@@ -14,6 +14,7 @@ abstract class BasePage (pageUrl: String = TestConfig.baseUrl) extends WebBrowse
   def openPage = {
     deleteAllCookies
     go to pageUrl
+    this
   }
 
   def closePage = close
