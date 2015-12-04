@@ -2,7 +2,7 @@ package pageObjects.pageObjectsImpl
 
 import objectLocatorRepository.TimelineComponentSelectors
 import pageObjects.TimelineComponent
-import pageObjects.pageObjectUtils.BaseComponent
+import pageObjects.pageObjectsImpl.pageObjectUtils.BaseComponent
 
 /**
   * Created by dev on 30/11/15.

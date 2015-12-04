@@ -2,6 +2,8 @@ package pageObjects.pageObjectsImpl
 
 import objectLocatorRepository.{SignupPageSelectors, LoginPageSelectors, HomePageSelectors}
 import pageObjects.HomePage
+import pageObjects.pageObjectsImpl.pageObjectUtils.BasePage
+import testConfig.TestConfig
 
 
 trait HomePageImpl {
@@ -9,13 +11,7 @@ trait HomePageImpl {
 
   val homePage: HomePage = new DefaultHomePageImpl
 
-  class DefaultHomePageImpl extends HomePage with HomePageSelectors with LoginPageSelectors with SignupPageSelectors {
-    def openPage: HomePage = {
-      deleteAllCookies
-      go to pageUrl
-      this
-    }
-
+  class DefaultHomePageImpl extends BasePage(TestConfig.baseUrl) with HomePage with HomePageSelectors with LoginPageSelectors with SignupPageSelectors {
     def signInWith(username: String, password: String) = {
       click on HOMEPAGE_LOGIN_BUTTON
       click on SIGNIN_EMAIL_TEXTFIELD

@@ -2,7 +2,7 @@ package pageObjects.pageObjectsImpl
 
 import objectLocatorRepository.StampleCreatorComponentSelectors
 import pageObjects.StampleCreatorComponent
-import pageObjects.pageObjectUtils.BaseComponent
+import pageObjects.pageObjectsImpl.pageObjectUtils.BaseComponent
 
 /**
   * Created by dev on 26/11/15.
