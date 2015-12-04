@@ -1,9 +1,9 @@
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
-import pageObjects.HomePage
 import testConfig.TestConfig
+import testUtils.BaseTest
 
 
-class TestLogin extends FeatureSpec with GivenWhenThen with Matchers {
+class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
 
   val username: String = "Username"
   val password: String = "Password"
@@ -19,15 +19,14 @@ class TestLogin extends FeatureSpec with GivenWhenThen with Matchers {
     scenario("User sign in from homepage menu") {
 
       Given("User connect to the Stample homepage")
-      val homePage = new HomePage
       homePage.openPage
       assert(homePage.isCurrentUrlEqualsTo(baseUrl + "login"))
 
       When("User fills sign in form and submit")
-      val appMainPage = homePage.signInWith(username, password)
+      homePage.signInWith(username, password)
 
       Then("User should have access to its content on Stample")
-      assert(appMainPage.stampleRootDisplayed)
+      assert(mainPage.stampleRootDisplayed)
     }
 
 /*    scenario("User sign from his mobile") {

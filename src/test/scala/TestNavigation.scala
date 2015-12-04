@@ -1,9 +1,9 @@
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
-import pageObjects.HomePage
 import testConfig.TestConfig
+import testUtils.BaseTest
 
 
-class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers {
+class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
 
   val username: String = "Username"
   val password: String = "Password"
@@ -17,16 +17,12 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers {
     scenario("User navigate through his home folder") {
 
       Given("User is connected to the Stample app")
-      val homePage = new HomePage
-      homePage.openPage
-      val appMainPage = homePage.signInWith(username, password)
-      val navigationComponent = appMainPage.getNavigation
-      val timelineComponent = appMainPage.getTimeline
+      mainPage.openPage(username, password)
 
       When("User click on home button")
-      navigationComponent.openMyLibraries
-      timelineComponent.openNthLibrary(0)
-      timelineComponent.openNthSpace(2)
+      navigationBar.openMyLibraries
+      timeline.openNthLibrary(0)
+      timeline.openNthSpace(0)
 
       Then("User should have access to its content on Stample")
       // TODO assert something here that proves that everything went fine
@@ -35,16 +31,12 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers {
     scenario("User navigate through his home folder and a sub folder") {
 
       Given("User is connected to the Stample app")
-      val homePage = new HomePage
-      homePage.openPage
-      val appMainPage = homePage.signInWith(username, password)
-      val navigationComponent = appMainPage.getNavigation
-      val timelineComponent = appMainPage.getTimeline
+      mainPage.openPage(username, password)
 
       When("User click on home button")
-      navigationComponent.openMyLibraries
-      timelineComponent.openNthLibrary(0)
-      timelineComponent.openNthStample(2)
+      navigationBar.openMyLibraries
+      timeline.openNthLibrary(0)
+      timeline.openNthStample(0)
 
       Then("User should have access to its content on Stample")
       // TODO assert something here that proves that everything went fine

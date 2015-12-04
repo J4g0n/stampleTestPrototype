@@ -1,9 +1,9 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
-import pageObjects.HomePage
 import testConfig.TestConfig
+import testUtils.BaseTest
 
 
-class TestSignup extends FeatureSpec with GivenWhenThen with Matchers {
+class TestSignup extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
 
   // TODO ensure user doesn't already exist
   private val userNumber = (Math.random() * 1000000).toInt.toString
@@ -24,15 +24,14 @@ class TestSignup extends FeatureSpec with GivenWhenThen with Matchers {
     scenario("User sign up from homepage") {
 
       Given("User connect to the Stample homepage")
-      val homePage = new HomePage
       homePage.openPage
       assert(homePage.isCurrentUrlEqualsTo(baseUrl + "login"))
 
       When("User fills sign in form and submit")
-      val appMainPage = homePage.signUpWith(email, username, firstname, lastname, password)
+      homePage.signUpWith(email, username, firstname, lastname, password)
 
       Then("User should have access to its content on Stample")
-      appMainPage.stampleRootDisplayed
+      mainPage.stampleRootDisplayed
     }
 
 /*    scenario("User sign from his mobile") {

@@ -6,16 +6,10 @@ import testUtils.WebBrowserCustom
 import testConfig.TestConfig
 
 
-abstract class BasePage (pageUrl: String = TestConfig.baseUrl) extends WebBrowserCustom {
+abstract class BasePage (val pageUrl: String = TestConfig.baseUrl) extends WebBrowserCustom {
   implicit val webDriver: WebDriver = TestConfig.webDriver
 
   def isCurrentUrlEqualsTo(url: String): Boolean = currentUrl == url
-
-  def openPage = {
-    deleteAllCookies
-    go to pageUrl
-    this
-  }
 
   def closePage = close
 
