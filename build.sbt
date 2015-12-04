@@ -13,7 +13,8 @@ libraryDependencies ++= Seq(
   "com.codeborne"						%		"phantomjsdriver" 	%	"1.2.1",
   // "com.github.detro"						%		"phantomjsdriver" 	%	"1.2.0",
   // "org.specs2" 							%%	"specs2" 					%	"2.1.1"			%	"test",
-  "org.seleniumhq.selenium"	%		"selenium-java" 	%	"2.48.2"
+  "org.seleniumhq.selenium"	%		"selenium-java" 	%	"2.48.2"//,
+  // "org.jenkins-ci.plugins" % "sbt" % "1.5"
 )
 
 testOptions in Test += Tests.Argument("-oD")

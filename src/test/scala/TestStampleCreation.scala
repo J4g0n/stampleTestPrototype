@@ -6,7 +6,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers {
   val username: String = "Username"
   val password: String = "Password"
   val title: String = "My custom title"
-  val summary: String = "My summary"
+  val summary: String = "My pretty summary"
   val description: String = "My super duper description"
 
   info("As a User")

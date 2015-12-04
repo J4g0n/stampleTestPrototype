@@ -20,7 +20,6 @@ object ObjectMapRepository {
 
   private def getSelectorFromString(selectorString: String): Selector = {
     val splittedSelector = selectorString.split("->")
-    //println("\t" + splittedSelector.head + " => " + splittedSelector.last)
     val selectorType = splittedSelector.head
     val selectorValue = splittedSelector.last
     selectorType match {
@@ -35,7 +34,6 @@ object ObjectMapRepository {
 
   private def addToObjectMap(line: String) = {
     val splittedLine = line.split("=")
-    //println(splittedLine.head + " ::: " + splittedLine.last)
     val selector: Selector = getSelectorFromString(splittedLine.last)
     splittedLine.head -> selector
   }
@@ -47,7 +45,7 @@ object ObjectMapRepository {
     val filename = "selectorsMapObject"
     Source.fromFile(filename)
       .getLines
-      //.filter(_.matches("[A-z]*=(css|id|class|xpath)->*"))
+      // .filter(_.matches("[A-z]*=(css|id|class|xpath)->*"))
       .map(addToObjectMap(_)).toMap
   }
 }
