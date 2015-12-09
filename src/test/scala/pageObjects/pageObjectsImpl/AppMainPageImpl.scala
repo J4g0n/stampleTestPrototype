@@ -23,14 +23,6 @@ trait AppMainPageImpl {
     }
 
     def stampleRootDisplayed = STAMPLE_APP_ROOT_NODE.element.isDisplayed
-
-    def getNewButton = newButtonComponent
-
-    def getStampleEditor = stampleCreatorComponent
-
-    def getNavigation = navigationBarComponent
-
-    def getTimeline = timelineComponent
   }
 }
 

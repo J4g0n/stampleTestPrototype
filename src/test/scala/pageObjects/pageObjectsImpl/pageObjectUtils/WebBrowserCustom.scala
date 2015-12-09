@@ -1,6 +1,7 @@
 package pageObjects.pageObjectsImpl.pageObjectUtils
 
 import objectLocatorRepository.objectMapUtils._
+import org.openqa.selenium.support.ui.{WebDriverWait, ExpectedConditions}
 import org.openqa.selenium.{JavascriptExecutor, WebDriver}
 import org.openqa.selenium.interactions.Actions
 import org.scalatest.selenium.WebBrowser
@@ -14,9 +15,24 @@ trait WebBrowserCustom extends WebBrowser {
     webDriver.asInstanceOf[JavascriptExecutor].executeScript("window.scrollTo(0,document.body.scrollHeight);")
   }
 
+  private def waitExplicitly(element: Element) = {
+    val wait = new WebDriverWait(webDriver, 20)
+    wait.until(ExpectedConditions.visibilityOf(element.underlying))
+  }
+
+  def safeClick(element: Element)(implicit webDriver: WebDriver): Unit = {
+    val action = new Actions(webDriver)
+    action
+      .moveToElement(element.underlying)
+      .click
+      .perform
+  }
+
   def hover(element: Element)(implicit webDriver: WebDriver): Unit = {
     val action = new Actions(webDriver)
-    action.moveToElement(element.underlying).perform()
+    action
+      .moveToElement(element.underlying)
+      .perform
   }
 
   def hover(s: this.Query)(implicit webDriver: WebDriver): Unit = {
