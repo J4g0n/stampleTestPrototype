@@ -6,5 +6,9 @@ package pageObjects
 trait Page {
   def openPage: Page
 
+  def closePage: Unit
+
+  def quitBrowser: Unit
+
   def isCurrentUrlEqualsTo(url: String): Boolean
 }

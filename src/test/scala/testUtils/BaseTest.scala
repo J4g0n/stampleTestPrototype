@@ -17,13 +17,16 @@ class PageObjects
 
 
 trait BaseTest {
-  val mainPage = BaseTest.pageObjects.appMainPage
-  val homePage = BaseTest.pageObjects.homePage
-  val navigationBar = BaseTest.pageObjects.navigationBarComponent
-  val newButton = BaseTest.pageObjects.newButtonComponent
-  val timeline = BaseTest.pageObjects.timelineComponent
-  val stampleCreator = BaseTest.pageObjects.stampleCreatorComponent
+  private val pageObjects = BaseTest.pageObjects
+
+  val mainPage = pageObjects.appMainPage
+  val homePage = pageObjects.homePage
+  val navigationBar = pageObjects.navigationBarComponent
+  val newButton = pageObjects.newButtonComponent
+  val timeline = pageObjects.timelineComponent
+  val stampleCreator = pageObjects.stampleCreatorComponent
 }
 object BaseTest {
   val pageObjects = new PageObjects
 }
+

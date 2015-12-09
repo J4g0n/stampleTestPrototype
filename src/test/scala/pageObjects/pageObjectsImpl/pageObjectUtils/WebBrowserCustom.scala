@@ -1,7 +1,7 @@
 package pageObjects.pageObjectsImpl.pageObjectUtils
 
 import objectLocatorRepository.objectMapUtils._
-import org.openqa.selenium.WebDriver
+import org.openqa.selenium.{JavascriptExecutor, WebDriver}
 import org.openqa.selenium.interactions.Actions
 import org.scalatest.selenium.WebBrowser
 import testConfig.TestConfig
@@ -9,6 +9,10 @@ import testConfig.TestConfig
 
 trait WebBrowserCustom extends WebBrowser {
   implicit val webDriver: WebDriver = TestConfig.webDriver
+
+  def scrollToTop(implicit webDriver: WebDriver) = {
+    webDriver.asInstanceOf[JavascriptExecutor].executeScript("window.scrollTo(0,document.body.scrollHeight);")
+  }
 
   def hover(element: Element)(implicit webDriver: WebDriver): Unit = {
     val action = new Actions(webDriver)
