@@ -2,6 +2,7 @@ homepage.login=css->li.main-nav.cd-signin a
 homepage.signup=css->li.main-nav.cd-signup a
 signin.email=id->signin-email
 signin.password=id->signin-password
+signin.button=css->#cd-signin .full-width
 signup.email=id->signup-email
 signup.username=id->signup-username
 signup.firstname=id->signup-firstname

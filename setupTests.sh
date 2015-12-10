@@ -23,7 +23,7 @@ echo "Installing chromium"
 sudo apt-get install chromium
 
 echo "Installing chromedriver"
-wget -N http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip
+wget -N http://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
 mv chromedriver ~/chromedriver
 

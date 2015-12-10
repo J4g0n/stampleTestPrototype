@@ -8,4 +8,5 @@ import objectLocatorRepository.objectMapUtils.{Selector, ObjectMapRepository}
 trait LoginPageSelectors extends ObjectMapRepository {
   val SIGNIN_EMAIL_TEXTFIELD: Selector = "signin.email"
   val SIGNIN_PASSWORD_TEXTFIELD: Selector = "signin.password"
+  val SIGNIN_BUTTON: Selector = "signin.button"
 }
