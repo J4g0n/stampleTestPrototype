@@ -18,8 +18,7 @@ trait HomePageImpl {
       textField(SIGNIN_EMAIL_TEXTFIELD).value = username
       click on SIGNIN_PASSWORD_TEXTFIELD
       pwdField(SIGNIN_PASSWORD_TEXTFIELD).value = password
-      click on SIGNIN_BUTTON
-      //submit()
+      submit()
 
       appMainPage
     }
