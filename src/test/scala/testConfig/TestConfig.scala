@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapab
 
 
 case class TestConfig (
-                        browser: String = "chrome",
+                        browser: String = "firefox",
                         baseUrl: String = "http://staging.stample.co/",
                         size: Option[(Int, Int)] = None
                       )
