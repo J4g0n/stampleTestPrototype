@@ -10,8 +10,8 @@
 #
 # Source function library.
 #.  /etc/init.d/functions
-XVFB_OUTPUT=.logs/Xvfb.out
-XVFB_ERROR_OUTPUT=.logs/XvbfError.err.out
+XVFB_OUTPUT=../logs/Xvfb.out
+XVFB_ERROR_OUTPUT=../logs/XvbfError.err.out
 XVFB=/usr/bin/X11/Xvfb
 XVFB_OPTIONS=":5 -screen 0 1080x1440x24 -fbdir /var/run -ac -extension RANDR"
 

@@ -29,4 +29,4 @@ mv chromedriver ~/chromedriver
 
 
 # create symlink to daemon
-ln -s ./xvbfDaemon /etc/init.d/xvbf
+# ln -s ./xvbfDaemon /etc/init.d/xvbf

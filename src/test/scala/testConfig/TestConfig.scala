@@ -11,8 +11,13 @@ import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapab
 
 
 case class TestConfig (
-                        browser: String = "chrome", 
+                        system: String = "linux",
+                        browser: String = "chrome",
                         baseUrl: String = "http://staging.stample.co/",
+                        pathToChromeOSX: String = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                        pathToFirefoxOSX: String = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
+                        pathToChromeLinux: String = "/usr/bin/firefox",
+                        pathToFirefoxLinux: String = "/usr/bin/google-chrome",
                         size: Option[(Int, Int)] = Some((1024, 728))
                       )
 
@@ -41,7 +46,8 @@ object TestConfig {
   }
 
   private def createChromeDriver: WebDriver = {
-    System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome")
+    //System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeLinux)
+    System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeOSX)
     val chromeCapabilities = DesiredCapabilities.chrome
     // TODO useless atm because we can't click to trigger clipper see: http://stackoverflow.com/questions/25557533/open-a-chrome-extension-through-selenium-webdriver
     // TODO there is still a hope to load it manually but i have not tried it yet
@@ -64,23 +70,14 @@ object TestConfig {
 
   private def createFirefoxWebDriver: WebDriver = {
     val baseCaps = DesiredCapabilities.firefox
-    System.setProperty("webdriver.firefox.bin","/usr/bin/firefox")
-    //System.setProperty("webdriver.firefox.bin","/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin")
-    //val profile = new ProfilesIni
-    //val firefoxProfile = profile.getProfile("Library/Application Support/Firefox/Profiles/0xd5cpw0.dev-edition-default/")
-    //baseCaps.setCapability("marionette", true)
+    //System.setProperty("webdriver.firefox.bin", testConfig.pathToFirefoxLinux)
+    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefoxOSX)
 
     new FirefoxDriver(baseCaps)
   }
 
-  // Run tests against selenium grid https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin
   private def createSeleniumGridDriver: WebDriver = {
-    //System.setProperty("webdriver.firefox.bin","/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin")
-    //System.setProperty("webdriver.chrome.driver", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-
     val baseCaps = new DesiredCapabilities
-    //baseCaps.setVersion("9.0.1")
-    //baseCaps.setPlatform(org.openqa.selenium.Platform.WINDOWS)
 
     new RemoteWebDriver(new URL("http://jenkins.localhost:4444/wd/hub"), baseCaps)
   }
@@ -100,10 +97,10 @@ object TestConfig {
 
   private def createWebDriver: WebDriver = {
     val webDriver: WebDriver = testConfig match {
-      case TestConfig("chrome", _, _) => createChromeDriver
-      case TestConfig("phantomjs", _, _) => createPhantomJSDriver
-      case TestConfig("firefox", _, _) => createFirefoxWebDriver
-      case TestConfig("grid", _, _) => createSeleniumGridDriver // forget selenium grid for the moment
+      case TestConfig(_, "chrome", _, _, _, _, _, _) => createChromeDriver
+      case TestConfig(_, "firefox", _, _, _, _, _, _) => createFirefoxWebDriver
+      // case TestConfig("phantomjs", _, _, _, _, _, _) => createPhantomJSDriver
+      // case TestConfig("grid", _, _, _, _, _, _) => createSeleniumGridDriver // forget selenium grid for the moment
     }
     setMaxTimeoutBetweenActions(webDriver, 10)
     setFullscreen(webDriver)

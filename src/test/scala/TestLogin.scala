@@ -5,7 +5,7 @@ import testUtils.BaseTest
 
 class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
 
-  val username: String = "Username"
+  val username: String = "Username2"
   val password: String = "Password"
   val baseUrl: String = TestConfig.baseUrl
 

@@ -3,7 +3,7 @@ import testUtils.BaseTest
 
 
 class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
-  val username: String = "Username"
+  val username: String = "Username2"
   val password: String = "Password"
   val title: String = "My custom title"
   val summary: String = "My pretty summary"

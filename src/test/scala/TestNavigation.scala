@@ -5,7 +5,7 @@ import testUtils.BaseTest
 
 class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
 
-  val username: String = "Username"
+  val username: String = "Username2"
   val password: String = "Password"
   val baseUrl: String = TestConfig.baseUrl
 
@@ -21,8 +21,8 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with B
 
       When("User click on home button")
       navigationBar.openMyLibraries
-      timeline.openNthLibrary(0)
-      timeline.openNthSpace(0)
+      //timeline.openNthLibrary(0)
+      //timeline.openNthSpace(0)
 
       Then("User should have access to its content on Stample")
       // TODO assert something here that proves that everything went fine
@@ -35,8 +35,8 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with B
 
       When("User click on home button")
       navigationBar.openMyLibraries
-      timeline.openNthLibrary(0)
-      timeline.openNthStample(0)
+      //timeline.openNthLibrary(0)
+      //timeline.openNthStample(0)
 
       Then("User should have access to its content on Stample")
       // TODO assert something here that proves that everything went fine
