@@ -9,5 +9,5 @@ trait StampleCreatorComponent {
 
   def saveStample: Unit
 
-  def addReminder: Unit
+  def addReminder(date: String): Unit
 }

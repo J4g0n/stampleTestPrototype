@@ -1,8 +1,8 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
-import testUtils.BaseTest
+import testUtils.StampleCreationComponents
 
 
-class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
+class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with StampleCreationComponents {
   val username: String = "Username2"
   val password: String = "Password"
   val title: String = "My custom title"
@@ -22,6 +22,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
 
       When("User fills stample and save it")
       stampleCreator.fillStample(title, summary, description)
+      stampleCreator.addReminder("inAWeek")
       stampleCreator.saveStample
 
       Then("stample should appear on timeline")

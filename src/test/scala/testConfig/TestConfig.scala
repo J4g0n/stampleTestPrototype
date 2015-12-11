@@ -20,7 +20,12 @@ case class TestConfig (
                         pathToFirefoxLinux: String = "/usr/bin/google-chrome",
                         size: Option[(Int, Int)] = Some((1024, 728))
                       )
-
+/*
+case class FirefoxConfigLinux extends TestConfig("linux", "firefox", _, "/usr/bin/firefox", )
+case class ChromeConfigLinux extends TestConfig()
+case class FirefoxConfigOSX extends TestConfig()
+case class ChromeConfigOSX extends TestConfig()
+*/
 
 /**
   * Created by dev on 20/11/15.

@@ -1,9 +1,9 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
 import testConfig.TestConfig
-import testUtils.BaseTest
+import testUtils.StamplePages
 
 
-class TestSignup extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
+class TestSignup extends FeatureSpec with GivenWhenThen with Matchers with StamplePages {
 
   // TODO ensure user doesn't already exist
   private val userNumber = (Math.random() * 1000000).toInt.toString

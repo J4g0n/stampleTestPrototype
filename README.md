@@ -50,6 +50,7 @@ source ~/.bashrc
  a. Launch chromedriver
     ~/chromedriver
  b. Launch tests with proper configuration
+    ./activator test    
    
-3. On phantomJS: 
+3. On phantomJS (there are bugs but it can be fixed i just need to figure it out): 
 TODO

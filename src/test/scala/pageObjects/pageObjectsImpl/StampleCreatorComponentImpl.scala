@@ -8,6 +8,8 @@ import pageObjects.pageObjectsImpl.pageObjectUtils.BaseComponent
   * Created by dev on 26/11/15.
   */
 trait StampleCreatorComponentImpl {
+  this: DatePickerComponentImpl =>
+
   val stampleCreatorComponent: StampleCreatorComponent = new DefaultStampleCreatorComponentImpl
 
   class DefaultStampleCreatorComponentImpl extends BaseComponent with StampleCreatorComponent with StampleCreatorComponentSelectors {
@@ -19,8 +21,19 @@ trait StampleCreatorComponentImpl {
 
     def saveStample = click on STAMPLE_CREATOR_SAVE_BUTTON
 
-    def addReminder = {
+    def addReminder(date: String) = {
       click on STAMPLE_CREATOR_REMINDER_BUTTON
+
+      // TODO maybe use regexp for precise dates
+      date match {
+        case "today" => datepickerComponent.pickToday
+        case "tomorrow" => datepickerComponent.pickTomorrow
+        case "inAWeek" => datepickerComponent.pickInAWeek
+        case "inAMonth" => datepickerComponent.pickInAMonth
+        case "in3Months" => datepickerComponent.pickInThreeMonths
+        case "inAYear" => datepickerComponent.pickInAYear
+        case _ => throw new Error("Invalid date " + date)
+      }
       /*val datePicker = new DatePickerComponent
       datePicker.choseDate("15/06/2016")*/
     }

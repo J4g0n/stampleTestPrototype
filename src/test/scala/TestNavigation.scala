@@ -1,9 +1,9 @@
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
 import testConfig.TestConfig
-import testUtils.BaseTest
+import testUtils.NavigationComponents
 
 
-class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
+class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with NavigationComponents {
 
   val username: String = "Username2"
   val password: String = "Password"

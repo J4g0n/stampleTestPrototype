@@ -1,9 +1,9 @@
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
 import testConfig.TestConfig
-import testUtils.BaseTest
+import testUtils.StamplePages
 
 
-class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with BaseTest {
+class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with StamplePages {
 
   val username: String = "Username2"
   val password: String = "Password"
