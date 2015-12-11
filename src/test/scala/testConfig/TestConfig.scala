@@ -46,8 +46,7 @@ object TestConfig {
   }
 
   private def createChromeDriver: WebDriver = {
-    //System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeLinux)
-    System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeOSX)
+    System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeLinux)
     val chromeCapabilities = DesiredCapabilities.chrome
     // TODO useless atm because we can't click to trigger clipper see: http://stackoverflow.com/questions/25557533/open-a-chrome-extension-through-selenium-webdriver
     // TODO there is still a hope to load it manually but i have not tried it yet
@@ -70,8 +69,7 @@ object TestConfig {
 
   private def createFirefoxWebDriver: WebDriver = {
     val baseCaps = DesiredCapabilities.firefox
-    //System.setProperty("webdriver.firefox.bin", testConfig.pathToFirefoxLinux)
-    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefoxOSX)
+    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefoxLinux)
 
     new FirefoxDriver(baseCaps)
   }
