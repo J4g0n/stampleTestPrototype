@@ -8,6 +8,8 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
   val title: String = "My custom title"
   val summary: String = "My pretty summary"
   val description: String = "My super duper description"
+  val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
+  val filename: String = "/Users/dev/Downloads/Haddock.jpg"
 
   info("As a User")
   info("I want to be able to create a new Stample")
@@ -21,16 +23,15 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       newButton.openStampleCreator
 
       When("User fills stample and save it")
-      stampleCreator.fillStample(title, summary, description)
       stampleCreator.addReminder("inAWeek")
+      stampleCreator.addFile(filename)
+      Thread.sleep(5000)
+      stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
+      stampleCreator.fillStample(title, summary, description)
       stampleCreator.saveStample
 
       Then("stample should appear on timeline")
       // TODO assert something here that proves Stample has been created
     }
-
-    /*scenario("User sign from his mobile") {
-
-    }*/
   }
 }

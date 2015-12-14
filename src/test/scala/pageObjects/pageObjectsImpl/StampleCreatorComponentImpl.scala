@@ -8,7 +8,8 @@ import pageObjects.pageObjectsImpl.pageObjectUtils.BaseComponent
   * Created by dev on 26/11/15.
   */
 trait StampleCreatorComponentImpl {
-  this: DatePickerComponentImpl =>
+  this: DatePickerComponentImpl
+    with VideoEmbeddedPopUpComponentImpl =>
 
   val stampleCreatorComponent: StampleCreatorComponent = new DefaultStampleCreatorComponentImpl
 
@@ -36,6 +37,19 @@ trait StampleCreatorComponentImpl {
       }
       /*val datePicker = new DatePickerComponent
       datePicker.choseDate("15/06/2016")*/
+    }
+
+    def addFile(filename: String): Unit = {
+      fill(STAMPLE_CREATOR_FILE_UPLOAD_INPUT) withText filename
+    }
+
+    def addEmbeddedVideo(videoUrl: String): Unit = {
+      click on STAMPLE_CREATOR_VIDEO_EMBEDDED_BUTTON
+      videoEmbeddedComponent.addUrl(videoUrl)
+    }
+
+    def changeFolder(date: String): Unit = {
+
     }
   }
 }

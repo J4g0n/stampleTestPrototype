@@ -11,9 +11,9 @@ import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapab
 
 
 case class TestConfig (
-                        system: String = "linux",
-                        browser: String = "chrome",
-                        baseUrl: String = "http://staging.stample.co/",
+                        system: String = "osx",
+                        browser: String = "firefox",
+                        baseUrl: String = "localhost:9000",
                         pathToChromeOSX: String = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
                         pathToFirefoxOSX: String = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
                         pathToChromeLinux: String = "/usr/bin/firefox",
@@ -51,7 +51,7 @@ object TestConfig {
   }
 
   private def createChromeDriver: WebDriver = {
-    System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeLinux)
+    System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeOSX)
     val chromeCapabilities = DesiredCapabilities.chrome
     // TODO useless atm because we can't click to trigger clipper see: http://stackoverflow.com/questions/25557533/open-a-chrome-extension-through-selenium-webdriver
     // TODO there is still a hope to load it manually but i have not tried it yet
@@ -74,7 +74,7 @@ object TestConfig {
 
   private def createFirefoxWebDriver: WebDriver = {
     val baseCaps = DesiredCapabilities.firefox
-    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefoxLinux)
+    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefoxOSX)
 
     new FirefoxDriver(baseCaps)
   }

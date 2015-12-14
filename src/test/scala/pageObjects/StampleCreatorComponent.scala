@@ -10,4 +10,10 @@ trait StampleCreatorComponent {
   def saveStample: Unit
 
   def addReminder(date: String): Unit
+
+  def addFile(filename: String): Unit
+
+  def addEmbeddedVideo(videoUrl: String): Unit
+
+  def changeFolder(date: String): Unit
 }

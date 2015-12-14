@@ -8,7 +8,6 @@ abstract class BasePage (val pageUrl: String = TestConfig.baseUrl) extends Page 
   def openPage: this.type = {
     deleteAllCookies
     go to pageUrl
-    scrollToTop
     this
   }
 

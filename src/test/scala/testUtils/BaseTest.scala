@@ -15,6 +15,7 @@ class AllObjects
   with TimelineComponentImpl
   with NewButtonComponentImpl
   with DatePickerComponentImpl
+  with VideoEmbeddedPopUpComponentImpl
 object AllObjects {
   val allObjects = new AllObjects
 }
@@ -43,7 +44,6 @@ trait StampleCreationComponents extends StamplePages {
 
   val newButton = allObjects.newButtonComponent
   val stampleCreator = allObjects.stampleCreatorComponent
-  val datePicker = allObjects.datepickerComponent
 }
 
 trait NavigationComponents extends StamplePages {
