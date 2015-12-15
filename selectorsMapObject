@@ -57,3 +57,4 @@ maximisedStample.description.video=css->.stample-full-screen .description iframe
 maximisedStample.fileAttachmentName=css->.stample-full-screen .file-attachment .name
 maximisedStample.reminder=css->.stample-full-screen .reminder
 maximisedStample.reminderSet=css->.stample-full-screen .reminder .is-set
+maximisedStample.tagText=css->.stample-full-screen .tag-text

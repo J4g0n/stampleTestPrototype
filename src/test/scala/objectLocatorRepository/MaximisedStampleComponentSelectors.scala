@@ -14,4 +14,5 @@ trait MaximisedStampleComponentSelectors extends ObjectMapRepository {
   val MAXIMISED_STAMPLE_FILE_ATTACHMENT_NAME: Selector = "maximisedStample.fileAttachmentName"
   val MAXIMISED_STAMPLE_REMINDER_BUTTON: Selector = "maximisedStample.reminder"
   val MAXIMISED_STAMPLE_REMINDER_SET_BUTTON: Selector = "maximisedStample.reminderSet"
+  val MAXIMISED_STAMPLE_HASHTAG_TEXT: Selector = "maximisedStample.tagText"
 }

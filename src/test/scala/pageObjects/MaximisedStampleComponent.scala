@@ -7,7 +7,8 @@ trait MaximisedStampleComponent {
   def title: String
   def summary: String
   def description: String
-  def fileAttachedName: String
+  def fileNthAttachedName(n: Int): String
+  def getNthTagName(n: Int): String
 
   def descriptionContainsImg: Boolean
   def descriptionContainsIframe: Boolean

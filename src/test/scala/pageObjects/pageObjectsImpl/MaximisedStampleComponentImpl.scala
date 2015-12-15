@@ -18,7 +18,9 @@ trait MaximisedStampleComponentImpl {
 
     def description: String = tryFind(MAXIMISED_STAMPLE_DESCRIPTION).text
 
-    def fileAttachedName: String = tryFind(MAXIMISED_STAMPLE_FILE_ATTACHMENT_NAME).text
+    def fileNthAttachedName(n: Int): String = findNthElement(MAXIMISED_STAMPLE_FILE_ATTACHMENT_NAME, n).text
+
+    def getNthTagName(n: Int): String = findNthElement(MAXIMISED_STAMPLE_HASHTAG_TEXT, n).text
 
     def descriptionContainsImg: Boolean = exists(MAXIMISED_STAMPLE_DESCRIPTION_PICTURE)
 

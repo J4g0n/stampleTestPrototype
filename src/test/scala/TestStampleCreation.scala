@@ -11,7 +11,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
   val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
   val photo1: String = "/Users/dev/Downloads/Haddock.jpg"
   val photo2: String = "/Users/dev/Downloads/tournesol.png"
-  val filename: String = "/Users/dev/Downloads/MIT18_S996S13_textbook.pdf"
+  val filename: String = "/Users/dev/Downloads/MIT.pdf"
   val comment: String = "Super comment for the win"
   val hashtag1: String = "hahstag1"
   val hashtag2: String = "hahstag2"
@@ -52,7 +52,9 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       assert(maximisedStample.description === description)
       assert(maximisedStample.descriptionContainsImg)
       assert(maximisedStample.descriptionContainsIframe)
-      assert(filename contains maximisedStample.fileAttachedName)
+      assert(maximisedStample.getNthTagName(0) === "#" + hashtag1)
+      assert(maximisedStample.getNthTagName(1) === "#" + hashtag2)
+      assert(filename contains maximisedStample.fileNthAttachedName(0))
     }
   }
 }
