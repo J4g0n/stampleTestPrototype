@@ -28,6 +28,16 @@ trait WebBrowserCustom extends WebBrowser {
       .perform
   }
 
+  def tryFind(query: this.Query)(implicit webDriver: WebDriver) = {
+    find(query).getOrElse(throw new Error ("Component with query selector: " + query + " doesn't exists, check if it matches something on the interface"))
+  }
+
+  // TODO there is somethign that can be wrong with this because we return false when there is no element but query selector can be wrong
+  def exists(query: this.Query): Boolean = find(query) match {
+    case Some(_) => true
+    case None => false
+  }
+
   def hover(element: Element)(implicit webDriver: WebDriver): Unit = {
     val action = new Actions(webDriver)
     action
@@ -36,13 +46,11 @@ trait WebBrowserCustom extends WebBrowser {
   }
 
   def hover(s: this.Query)(implicit webDriver: WebDriver): Unit = {
-    val selector = find(s).get // TODO catch exceptions here
+    val selector = tryFind(s)
     hover(selector)
   }
 
-  def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = {
-    findAll(s).drop(n).next
-  }
+  def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = findAll(s).drop(n).next
 
   class fill(s: this.Query) {
     def withText(content: String)(implicit webDriver: WebDriver): Unit = {

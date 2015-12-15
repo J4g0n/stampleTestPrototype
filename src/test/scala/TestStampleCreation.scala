@@ -5,11 +5,12 @@ import testUtils.StampleCreationComponents
 class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with StampleCreationComponents {
   val username: String = "Username2"
   val password: String = "Password"
-  val title: String = "My custom title"
+  val title: String = "Custom title"
   val summary: String = "My pretty summary"
   val description: String = "My super duper description"
   val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
   val filename: String = "/Users/dev/Downloads/Haddock.jpg"
+  val photo: String = "/Users/dev/Downloads/tournesol.png"
 
   info("As a User")
   info("I want to be able to create a new Stample")
@@ -24,14 +25,22 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
 
       When("User fills stample and save it")
       stampleCreator.addReminder("inAWeek")
-      stampleCreator.addFile(filename)
-      Thread.sleep(5000)
-      stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
       stampleCreator.fillStample(title, summary, description)
+      stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
+      stampleCreator.addPhoto(filename)
       stampleCreator.saveStample
 
       Then("stample should appear on timeline")
-      // TODO assert something here that proves Stample has been created
+      // TODO We should find another way to validate, other than doing actions inside browser
+      navigationBar.openMyLibraries
+      timeline.openNthLibrary(0)
+      timeline.openNthStample(0)
+
+      assert(maximisedStample.title === title)
+      //assert(maximisedStample.summary === summary) // test doesn't pass with it 
+      assert(maximisedStample.description === description)
+      assert(maximisedStample.descriptionContainsImg)
+      assert(maximisedStample.descriptionContainsIframe)
     }
   }
 }

@@ -39,8 +39,9 @@ trait StampleCreatorComponentImpl {
       datePicker.choseDate("15/06/2016")*/
     }
 
-    def addFile(filename: String): Unit = {
+    def addPhoto(filename: String): Unit = {
       fill(STAMPLE_CREATOR_FILE_UPLOAD_INPUT) withText filename
+      Thread.sleep(5000) // TODO wait download is finished (convenient but should change)
     }
 
     def addEmbeddedVideo(videoUrl: String): Unit = {

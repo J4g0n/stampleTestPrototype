@@ -11,7 +11,7 @@ trait StampleCreatorComponent {
 
   def addReminder(date: String): Unit
 
-  def addFile(filename: String): Unit
+  def addPhoto(filename: String): Unit
 
   def addEmbeddedVideo(videoUrl: String): Unit
 
