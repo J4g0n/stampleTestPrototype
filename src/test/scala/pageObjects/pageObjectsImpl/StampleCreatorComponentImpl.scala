@@ -39,10 +39,23 @@ trait StampleCreatorComponentImpl {
       datePicker.choseDate("15/06/2016")*/
     }
 
-    def addPhoto(filename: String): Unit = {
-      fill(STAMPLE_CREATOR_FILE_UPLOAD_INPUT) withText filename
-      Thread.sleep(5000) // TODO wait download is finished (convenient but should change)
+    def addPhoto(photoname: String): Unit = {
+      handleUpload(STAMPLE_CREATOR_PICTURE_UPLOAD_INPUT, photoname)
     }
+
+    def addFile(filename: String): Unit = {
+      handleUpload(STAMPLE_CREATOR_ATTACHMENT_UPLOAD_INPUT, filename)
+    }
+
+    def addComment(comment: String): Unit = fill(STAMPLE_CREATOR_COMMENT_FIELD) withText comment
+
+    def addHashtag(hashtag: String): Unit = {
+      find(STAMPLE_CREATOR_HASHTAG_BUTTON).map(click on _)
+      fill(STAMPLE_CREATOR_HASHTAG_FIELD) withText hashtag
+      pressKeys(" ") // TODO mandatory to save hashtag it's also possible to use ENTER (just dunno its code)
+    }
+
+    def toggleMaximisedView: Unit = click on STAMPLE_CREATOR_STRETCH_BUTTON
 
     def addEmbeddedVideo(videoUrl: String): Unit = {
       click on STAMPLE_CREATOR_VIDEO_EMBEDDED_BUTTON

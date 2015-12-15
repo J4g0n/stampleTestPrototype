@@ -18,10 +18,15 @@ trait MaximisedStampleComponentImpl {
 
     def description: String = tryFind(MAXIMISED_STAMPLE_DESCRIPTION).text
 
-    private def descriptionContains(words: String): Boolean = description contains words
+    def fileAttachedName: String = tryFind(MAXIMISED_STAMPLE_FILE_ATTACHMENT_NAME).text
 
     def descriptionContainsImg: Boolean = exists(MAXIMISED_STAMPLE_DESCRIPTION_PICTURE)
 
     def descriptionContainsIframe: Boolean = exists(MAXIMISED_STAMPLE_DESCRIPTION_VIDEO)
+
+    def isReminderSet: Boolean = {
+      hover(MAXIMISED_STAMPLE_TITLE)
+      exists(MAXIMISED_STAMPLE_REMINDER_SET_BUTTON)
+    }
   }
 }

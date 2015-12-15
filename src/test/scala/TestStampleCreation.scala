@@ -9,8 +9,12 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
   val summary: String = "My pretty summary"
   val description: String = "My super duper description"
   val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
-  val filename: String = "/Users/dev/Downloads/Haddock.jpg"
-  val photo: String = "/Users/dev/Downloads/tournesol.png"
+  val photo1: String = "/Users/dev/Downloads/Haddock.jpg"
+  val photo2: String = "/Users/dev/Downloads/tournesol.png"
+  val filename: String = "/Users/dev/Downloads/MIT18_S996S13_textbook.pdf"
+  val comment: String = "Super comment for the win"
+  val hashtag1: String = "hahstag1"
+  val hashtag2: String = "hahstag2"
 
   info("As a User")
   info("I want to be able to create a new Stample")
@@ -24,10 +28,15 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       newButton.openStampleCreator
 
       When("User fills stample and save it")
+      // TODO order of actions matters i don't understand why right now but it can be a matter with state cursor which doesn't represent datas
       stampleCreator.addReminder("inAWeek")
       stampleCreator.fillStample(title, summary, description)
+      stampleCreator.addPhoto(photo1)
       stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
-      stampleCreator.addPhoto(filename)
+      stampleCreator.addHashtag(hashtag1)
+      stampleCreator.addComment(comment)
+      stampleCreator.addFile(filename)
+      stampleCreator.addHashtag(hashtag2)
       stampleCreator.saveStample
 
       Then("stample should appear on timeline")
@@ -36,11 +45,14 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       timeline.openNthLibrary(0)
       timeline.openNthStample(0)
 
+      And("stample content should be consistent")
+      assert(maximisedStample.isReminderSet)
       assert(maximisedStample.title === title)
-      //assert(maximisedStample.summary === summary) // test doesn't pass with it 
+      //assert(maximisedStample.summary === summary) // test doesn't pass with it
       assert(maximisedStample.description === description)
       assert(maximisedStample.descriptionContainsImg)
       assert(maximisedStample.descriptionContainsIframe)
+      assert(filename contains maximisedStample.fileAttachedName)
     }
   }
 }

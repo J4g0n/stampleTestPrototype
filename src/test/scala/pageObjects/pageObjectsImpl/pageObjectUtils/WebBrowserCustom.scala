@@ -52,6 +52,17 @@ trait WebBrowserCustom extends WebBrowser {
 
   def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = findAll(s).drop(n).next
 
+  def tryClear(query: this.Query) = {
+    find(query)
+      .map(_.underlying.clear)
+      .getOrElse(throw new Error("An error occur while trying to upload, it seems that selector: " + query + " doesn't match"))
+  }
+
+  def handleUpload(query: this.Query, filepath: String)(implicit webDriver: WebDriver): Unit = {
+    click on query
+    fill(query) withText filepath
+  }
+
   class fill(s: this.Query) {
     def withText(content: String)(implicit webDriver: WebDriver): Unit = {
       click on s
@@ -70,7 +81,6 @@ trait WebBrowserCustom extends WebBrowser {
       case ClassSelector(selectorClass) => className(selectorClass)
       case _ => throw new Error("Invalid selector type. Currently selectors allowed are: 'css' and 'id'")
     }
-    //new WebDriverWait(webDriver, 30).until(ExpectedConditions.visibilityOfElementLocated(selectedElement.by))
 
     selectedElement
   }

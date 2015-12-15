@@ -13,6 +13,14 @@ trait StampleCreatorComponent {
 
   def addPhoto(filename: String): Unit
 
+  def addFile(filename: String): Unit
+
+  def addComment(comment: String): Unit
+
+  def addHashtag(hashtag: String): Unit
+
+  def toggleMaximisedView: Unit
+
   def addEmbeddedVideo(videoUrl: String): Unit
 
   def changeFolder(date: String): Unit
