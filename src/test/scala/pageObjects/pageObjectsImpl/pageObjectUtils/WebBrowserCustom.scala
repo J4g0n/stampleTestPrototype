@@ -11,8 +11,16 @@ import testConfig.TestConfig
 trait WebBrowserCustom extends WebBrowser {
   implicit val webDriver: WebDriver = TestConfig.webDriver
 
-  def scrollToTop(implicit webDriver: WebDriver) = {
+  def scrollDown(implicit webDriver: WebDriver) = {
     webDriver.asInstanceOf[JavascriptExecutor].executeScript("window.scrollTo(0,document.body.scrollHeight);")
+  }
+
+  def scrollUp(implicit webDriver: WebDriver) = {
+    webDriver.asInstanceOf[JavascriptExecutor].executeScript("window.scrollTo(0,-document.body.scrollHeight);")
+  }
+
+  def scrollHeight(height: Int)(implicit webDriver: WebDriver) = {
+    webDriver.asInstanceOf[JavascriptExecutor].executeScript("window.scrollTo(0," + height + ");")
   }
 
   private def waitExplicitly(element: Element) = {
@@ -52,7 +60,7 @@ trait WebBrowserCustom extends WebBrowser {
 
   def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = findAll(s).drop(n).next
 
-  def tryClear(query: this.Query) = {
+  def tryClear(query: this.Query)(implicit webDriver: WebDriver): Unit = {
     find(query)
       .map(_.underlying.clear)
       .getOrElse(throw new Error("An error occur while trying to upload, it seems that selector: " + query + " doesn't match"))

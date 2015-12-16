@@ -15,6 +15,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
   val comment: String = "Super comment for the win"
   val hashtag1: String = "hahstag1"
   val hashtag2: String = "hahstag2"
+  val hashtag3: String = "hahstag3"
 
   info("As a User")
   info("I want to be able to create a new Stample")
@@ -28,17 +29,19 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       newButton.openStampleCreator
 
       When("User fills stample and save it")
-      // TODO order of actions matters i don't understand why right now but it can be a matter with state cursor which doesn't represent datas
+      // TODO order of actions matters (especially for upload it seems) i don't understand why right now but it can be a matter with state cursor which doesn't represent datas
       stampleCreator.toggleMaximisedView
       stampleCreator.fillStample(title, summary, description)
       stampleCreator.addPhoto(photo1)
       stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
-      stampleCreator.toggleMaximisedView
       stampleCreator.addHashtag(hashtag1)
+      stampleCreator.toggleMaximisedView
+      stampleCreator.addHashtag(hashtag3)
       stampleCreator.addComment(comment)
       stampleCreator.addFile(filename)
       stampleCreator.addReminder("inAWeek")
       stampleCreator.addHashtag(hashtag2)
+      stampleCreator.removeNthTag(1)
       stampleCreator.toggleMaximisedView
       stampleCreator.saveStample
 

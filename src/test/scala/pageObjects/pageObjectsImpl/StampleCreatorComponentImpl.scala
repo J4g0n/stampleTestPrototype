@@ -39,13 +39,9 @@ trait StampleCreatorComponentImpl {
       datePicker.choseDate("15/06/2016")*/
     }
 
-    def addPhoto(photoname: String): Unit = {
-      handleUpload(STAMPLE_CREATOR_PICTURE_UPLOAD_INPUT, photoname)
-    }
+    def addPhoto(photoname: String): Unit = handleUpload(STAMPLE_CREATOR_PICTURE_UPLOAD_INPUT, photoname)
 
-    def addFile(filename: String): Unit = {
-      handleUpload(STAMPLE_CREATOR_ATTACHMENT_UPLOAD_INPUT, filename)
-    }
+    def addFile(filename: String): Unit = handleUpload(STAMPLE_CREATOR_ATTACHMENT_UPLOAD_INPUT, filename)
 
     def addComment(comment: String): Unit = fill(STAMPLE_CREATOR_COMMENT_FIELD) withText comment
 
@@ -53,6 +49,12 @@ trait StampleCreatorComponentImpl {
       find(STAMPLE_CREATOR_HASHTAG_BUTTON).map(click on _)
       fill(STAMPLE_CREATOR_HASHTAG_FIELD) withText hashtag
       pressKeys(" ") // TODO mandatory to save hashtag it's also possible to use ENTER (just dunno its code)
+    }
+
+    def removeNthTag(n: Int): Unit = {
+      val tagRemoveButton = findNthElement(STAMPLE_CREATOR_HASHTAG_REMOVE_BUTTON, n)
+      hover(tagRemoveButton)
+      click on tagRemoveButton
     }
 
     def toggleMaximisedView: Unit = click on STAMPLE_CREATOR_STRETCH_BUTTON

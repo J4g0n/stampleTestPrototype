@@ -19,6 +19,8 @@ trait StampleCreatorComponent {
 
   def addHashtag(hashtag: String): Unit
 
+  def removeNthTag(n: Int): Unit
+
   def toggleMaximisedView: Unit
 
   def addEmbeddedVideo(videoUrl: String): Unit

@@ -23,6 +23,7 @@ stampleCreator.pictureUploadButton=css->.stample-creation .invisible-input
 stampleCreator.pictureUploadInput=css->.stample-creation .upload-picture input
 stampleCreator.comment=css->.stample-creation .commentContentEditable
 stampleCreator.hashtagButton=css->.stample-creation .tags-opener-sticker
+stampleCreator.hashtagRemove=css->.stample-creation .tag-delete-button
 stampleCreator.hashtag=css->.stample-creation .new-tag-input
 stampleCreator.stretchButton=css->.stample-creation .stample-creation-expander
 videoEmbedded.url=css->#video-embedding-overlay .input-container input

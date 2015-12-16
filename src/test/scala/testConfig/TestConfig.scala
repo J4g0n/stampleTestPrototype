@@ -105,7 +105,7 @@ object TestConfig {
       // case TestConfig("phantomjs", _, _, _, _, _, _) => createPhantomJSDriver
       // case TestConfig("grid", _, _, _, _, _, _) => createSeleniumGridDriver // forget selenium grid for the moment
     }
-    setMaxTimeoutBetweenActions(webDriver, 10)
+    setMaxTimeoutBetweenActions(webDriver, 5)
     setFullscreen(webDriver)
   }
 }
