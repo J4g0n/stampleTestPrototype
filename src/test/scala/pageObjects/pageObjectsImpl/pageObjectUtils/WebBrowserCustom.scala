@@ -60,6 +60,8 @@ trait WebBrowserCustom extends WebBrowser {
 
   def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = findAll(s).drop(n).next
 
+  def tryFindElementWithText(s: this.Query, actionName: String)(implicit webDriver: WebDriver): this.Element = findAll(s).find(_.text.toLowerCase == actionName).getOrElse(throw new Error("Impossible to get by text element for query: " + s + " and text " + actionName))
+
   def tryClear(query: this.Query)(implicit webDriver: WebDriver): Unit = {
     find(query)
       .map(_.underlying.clear)

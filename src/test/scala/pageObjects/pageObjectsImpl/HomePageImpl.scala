@@ -19,8 +19,6 @@ trait HomePageImpl {
       click on SIGNIN_PASSWORD_TEXTFIELD
       pwdField(SIGNIN_PASSWORD_TEXTFIELD).value = password
       submit()
-
-      appMainPage
     }
 
     def signUpWith(email: String, username: String, firstname: String, lastname: String, password: String) = {
@@ -38,8 +36,6 @@ trait HomePageImpl {
       click on SIGNUP_PASSWORD_TEXTFIELD
       pwdField(SIGNUP_PASSWORD_TEXTFIELD).value = password
       submit()
-
-      appMainPage
     }
   }
 }

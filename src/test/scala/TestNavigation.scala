@@ -18,6 +18,7 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with N
 
       Given("User is connected to the Stample app")
       mainPage.openPage(username, password)
+      assert(mainPage.stampleRootDisplayed)
 
       When("User click on home button")
       navigationBar.openMyLibraries
@@ -35,8 +36,7 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with N
 
       When("User click on home button")
       navigationBar.openMyLibraries
-      //timeline.openNthLibrary(0)
-      //timeline.openNthStample(0)
+      timeline.openNthLibrary(0)
 
       Then("User should have access to its content on Stample")
       // TODO assert something here that proves that everything went fine

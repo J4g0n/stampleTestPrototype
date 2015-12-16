@@ -40,6 +40,15 @@ trait AllComponents {
 }
 
 
+trait StampleMaximisedComponents extends StamplePages {
+  private val allObjects = AllObjects.allObjects
+
+  val maximisedStample = allObjects.maximisedStampleComponent
+
+  val navigationBar = allObjects.navigationBarComponent
+  val timeline = allObjects.timelineComponent
+}
+
 trait StampleCreationComponents extends StamplePages {
   private val allObjects = AllObjects.allObjects
 

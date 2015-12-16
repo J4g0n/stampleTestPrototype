@@ -14,6 +14,8 @@ trait StampleCreatorComponentImpl {
   val stampleCreatorComponent: StampleCreatorComponent = new DefaultStampleCreatorComponentImpl
 
   class DefaultStampleCreatorComponentImpl extends BaseComponent with StampleCreatorComponent with StampleCreatorComponentSelectors {
+    def isOpened: Boolean = tryFind(STAMPLE_CREATOR).isDisplayed
+
     def fillStample(title: String, summary: String, description: String) = {
       fill(STAMPLE_CREATOR_TITLE_FIELD) withText title
       fill(STAMPLE_CREATOR_SUMMARY_FIELD) withText summary
