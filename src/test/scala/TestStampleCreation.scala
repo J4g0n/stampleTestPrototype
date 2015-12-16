@@ -29,14 +29,17 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
 
       When("User fills stample and save it")
       // TODO order of actions matters i don't understand why right now but it can be a matter with state cursor which doesn't represent datas
-      stampleCreator.addReminder("inAWeek")
+      stampleCreator.toggleMaximisedView
       stampleCreator.fillStample(title, summary, description)
       stampleCreator.addPhoto(photo1)
       stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
+      stampleCreator.toggleMaximisedView
       stampleCreator.addHashtag(hashtag1)
       stampleCreator.addComment(comment)
       stampleCreator.addFile(filename)
+      stampleCreator.addReminder("inAWeek")
       stampleCreator.addHashtag(hashtag2)
+      stampleCreator.toggleMaximisedView
       stampleCreator.saveStample
 
       Then("stample should appear on timeline")
