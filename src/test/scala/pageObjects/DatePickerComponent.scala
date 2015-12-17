@@ -11,4 +11,5 @@ trait DatePickerComponent {
   def pickInAMonth
   def pickInThreeMonths
   def pickInAYear
+  def pickDate(date: String)
 }

@@ -39,18 +39,18 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       // TODO order of actions matters (especially for upload it seems) i don't understand why right now but it can be a matter with state cursor which doesn't represent datas
       stampleCreator.toggleMaximisedView
       stampleCreator.fillStample(title, summary, description)
-      stampleCreator.addPhoto(photo1)
-      stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
+      editorBar.addPhoto(photo1)
+      editorBar.addEmbeddedVideo(youtubeVideoUrl)
       stampleCreator.addHashtag(hashtag1)
       stampleCreator.toggleMaximisedView
       stampleCreator.addHashtag(hashtag3)
       stampleCreator.addComment(comment)
-      stampleCreator.addFile(filename)
-      stampleCreator.addReminder("inAWeek")
+      editorBar.addFile(filename)
+      editorBar.addReminder("inAWeek")
       stampleCreator.addHashtag(hashtag2)
       stampleCreator.removeNthTag(1)
       stampleCreator.toggleMaximisedView
-      stampleCreator.saveStample
+      editorBar.saveStample
 
       Then("stample should appear on timeline")
       // TODO We should find another way to validate, other than doing actions inside browser

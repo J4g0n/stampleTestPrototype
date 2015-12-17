@@ -17,5 +17,18 @@ trait DatePickerComponentImpl {
     def pickInAMonth = click on DATEPICKER_IN_A_MONTH_BUTTON
     def pickInThreeMonths = click on DATEPICKER_IN_3_MONTHS_BUTTON
     def pickInAYear = click on DATEPICKER_IN_A_YEAR_BUTTON
+
+    def pickDate(date: String) = {
+      // TODO maybe use regexp for precise dates
+      date match {
+        case "today" => datepickerComponent.pickToday
+        case "tomorrow" => datepickerComponent.pickTomorrow
+        case "inAWeek" => datepickerComponent.pickInAWeek
+        case "inAMonth" => datepickerComponent.pickInAMonth
+        case "in3Months" => datepickerComponent.pickInThreeMonths
+        case "inAYear" => datepickerComponent.pickInAYear
+        case _ => throw new Error("Invalid date " + date)
+      }
+    }
   }
 }

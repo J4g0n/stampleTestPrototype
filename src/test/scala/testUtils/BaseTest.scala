@@ -17,6 +17,7 @@ class AllObjects
   with DatePickerComponentImpl
   with VideoEmbeddedPopUpComponentImpl
   with MaximisedStampleComponentImpl
+  with StampleEditorBarComponentImpl
 object AllObjects {
   val allObjects = new AllObjects
 }
@@ -36,6 +37,7 @@ trait AllComponents {
   val newButton = allObjects.newButtonComponent
   val timeline = allObjects.timelineComponent
   val stampleCreator = allObjects.stampleCreatorComponent
+  val editorBar = allObjects.stampleCreatorComponent
   val datePicker = allObjects.datepickerComponent
 }
 
@@ -44,6 +46,7 @@ trait StampleMaximisedComponents extends StamplePages {
   private val allObjects = AllObjects.allObjects
 
   val maximisedStample = allObjects.maximisedStampleComponent
+  val editorBar = allObjects.editorBarComponent
 
   val navigationBar = allObjects.navigationBarComponent
   val timeline = allObjects.timelineComponent
@@ -54,6 +57,7 @@ trait StampleCreationComponents extends StamplePages {
 
   val newButton = allObjects.newButtonComponent
   val stampleCreator = allObjects.stampleCreatorComponent
+  val editorBar = allObjects.editorBarComponent
 
   // TODO Used for verification maybe it should change
   val navigationBar = allObjects.navigationBarComponent
