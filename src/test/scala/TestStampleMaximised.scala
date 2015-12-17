@@ -7,6 +7,13 @@ import testUtils.StampleMaximisedComponents
 class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers with StampleMaximisedComponents {
   val username: String = "Username2"
   val password: String = "Password"
+  val hashtag1: String = "HASHTAG4"
+  val hashtag2: String = "HASHTAG5"
+  val hashtag3: String = "HASHTAG6"
+  val comment1: String = "Super comment1"
+  val comment2: String = "Super comment2"
+  val comment3: String = "Super comment3"
+  val editComment: String = "Duper"
 
   info("As a Stample user")
   info("I want to be able to open a Stample in maximised view")
@@ -33,7 +40,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       assert(maximisedStample.isReminderSet)
 
       And("stample must have been commented")
-      assert(maximisedStample.getNthComment(0) !== "")
+      assert(maximisedStample.getNthComment(0) contains "")
 
       And("stample must have at least one attachment")
       assert(maximisedStample.fileNthAttachedName(0) !== 0)
@@ -45,8 +52,16 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       When("User interact and edit stample")
       maximisedStample.setReminder("inAMonth")
       maximisedStample.setFavorite
-      maximisedStample.unlockStample
+      maximisedStample.addHashtag(hashtag1)
+      maximisedStample.addHashtag(hashtag2)
+      maximisedStample.addHashtag(hashtag3)
+      maximisedStample.deleteNthTag(0)
+      maximisedStample.likeStample
+      maximisedStample.addComment(comment1)
+      maximisedStample.editComment(0, editComment)
+      maximisedStample.deleteNthComment(0)
       maximisedStample.editStample
+      maximisedStample.closeStample
 
 
       Then("Stample edited should be consistent with new datas")
