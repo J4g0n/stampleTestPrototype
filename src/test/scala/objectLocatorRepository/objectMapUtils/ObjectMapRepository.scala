@@ -1,5 +1,10 @@
 package objectLocatorRepository.objectMapUtils
 
+import java.io.File
+
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
+
 
 sealed abstract class Selector(val value: String, selectorType: String)
 case class CssSelector(override val value: String) extends Selector(value, "id")
@@ -10,15 +15,33 @@ case class ClassSelector(override val value: String) extends Selector(value, "cl
 //case class TemplateSelector(override val value: String)(val formatter: String => Selector) extends Selector(value, "cssTemplate")
 
 
+trait MapRepository[T] {
+
+  protected val path: String = ""
+  val configManager = {
+    val filename = "selectorsMapObject.conf"
+    val mapObjectFile = new File(filename)
+    ConfigFactory.parseFile(mapObjectFile)
+  }
+
+  def deserializeToCaseClass(deserializer: Config => T): T = deserializer(configManager)
+
+  implicit def strToSelector(keyId: String): Selector = {
+    ObjectMapRepository.getSelectorFromString(keyId)
+  }
+}
+
+
 trait ObjectMapRepository {
   implicit def getLocator(keyId: String): Selector = {
     ObjectMapRepository.objectMap(keyId)
   }
 }
+
 object ObjectMapRepository {
   val objectMap = loadObjectMapFromFile
 
-  private def getSelectorFromString(selectorString: String): Selector = {
+  def getSelectorFromString(selectorString: String): Selector = {
     val splittedSelector = selectorString.split("->")
     val selectorType = splittedSelector.head
     val selectorValue = splittedSelector.last
@@ -42,7 +65,7 @@ object ObjectMapRepository {
   private def loadObjectMapFromFile = {
     import scala.io.Source
 
-    val filename = "selectorsMapObject"
+    val filename = "selectorsMapObject.conf"
     Source.fromFile(filename)
       .getLines
       // .filter(_.matches("[A-z]*=(css|id|class|xpath)->*"))
