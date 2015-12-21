@@ -5,6 +5,10 @@ import java.io.File
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 
+import com.github.kxbmap.configs.Configs
+import com.github.kxbmap.configs.syntax._
+import objectLocatorRepository.objectMapUtils
+
 
 sealed abstract class Selector(val value: String, selectorType: String)
 case class CssSelector(override val value: String) extends Selector(value, "id")
@@ -14,8 +18,9 @@ case class ClassSelector(override val value: String) extends Selector(value, "cl
 // TODO investigate a way to build css query from template using some king of build function
 //case class TemplateSelector(override val value: String)(val formatter: String => Selector) extends Selector(value, "cssTemplate")
 
+abstract case class Serialiser[T]()
 
-trait MapRepository[T] {
+trait MapRepository {
 
   protected val path: String = ""
   val configManager = {
@@ -24,7 +29,11 @@ trait MapRepository[T] {
     ConfigFactory.parseFile(mapObjectFile)
   }
 
-  def deserializeToCaseClass(deserializer: Config => T): T = deserializer(configManager)
+  def mapConfig[T[_]](toMap: Configs[T[String]]): Configs[T[Selector]] = toMap.mapF[T, String, Selector](strToSelector(_))
+
+  def deserialize[T[_], String, Selector] = mapConfig[T](Configs.MapF[T[_], String, Selector]) //MapF[T[Selector], String, Selector] /*{ /*str: String => strToSelector(str)*/}*/ )
+
+  //def deserializeToCaseClass(deserializer: Config => T): T = deserializer(configManager)
 
   implicit def strToSelector(keyId: String): Selector = {
     ObjectMapRepository.getSelectorFromString(keyId)
