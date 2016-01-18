@@ -18,6 +18,11 @@ On mac, open terminal and do:
   
 3. Launch tests:
   > ./activator test
+  
+4. Add environment variable for OS, append:
+  > export OS=[OSX | LINUX]
+  to .bash_profile or .bashrc
+  > source ~/.bash[_profile | rc]
 
   
 ## Launch test with phantomjs
