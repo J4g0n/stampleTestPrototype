@@ -10,28 +10,42 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapabilities}
 
 
-case class TestConfig (
-                        system: String = "osx",
-                        browser: String = "firefox",
+abstract case class TestConfig (
+                        browser: String,
                         baseUrl: String = "localhost:9000",
-                        pathToChromeOSX: String = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-                        pathToFirefoxOSX: String = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin",
-                        pathToChromeLinux: String = "/usr/bin/firefox",
-                        pathToFirefoxLinux: String = "/usr/bin/google-chrome",
+                        pathToChrome: String,
+                        pathToFirefox: String,
                         size: Option[(Int, Int)] = Some((1024, 728))
                       )
-/*
-case class FirefoxConfigLinux extends TestConfig("linux", "firefox", _, "/usr/bin/firefox", )
-case class ChromeConfigLinux extends TestConfig()
-case class FirefoxConfigOSX extends TestConfig()
-case class ChromeConfigOSX extends TestConfig()
-*/
+
+class LinuxTestConfig() extends TestConfig (
+                            browser = "firefox",
+                            baseUrl = "localhost:9000",
+                            pathToChrome = "/usr/bin/google-chrome",
+                            pathToFirefox = "/usr/bin/firefox"
+                          )
+
+class OSXTestConfig() extends TestConfig (
+                            browser = "firefox",
+                            baseUrl = "localhost:9000",
+                            pathToChrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                            pathToFirefox = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin"
+                          )
+
 
 /**
   * Created by dev on 20/11/15.
   */
 object TestConfig {
-  val testConfig: TestConfig = new TestConfig
+  val testConfig = {
+    val osType: Option[String] = Option(System.getenv("OS"))
+    osType match {
+      case Some("OSX") => new OSXTestConfig()
+      case Some("LINUX") => new LinuxTestConfig()
+      case Some(wrongOsName) => throw new Error(s"Wrong os type, available os are OSX and LINUX: $wrongOsName")
+      case None => throw new Error(s"No os type, it must be set as an environment variable")
+    }
+  }
   val webDriver: WebDriver = createWebDriver
 
   def baseUrl = testConfig.baseUrl
@@ -51,7 +65,7 @@ object TestConfig {
   }
 
   private def createChromeDriver: WebDriver = {
-    System.setProperty("webdriver.chrome.driver", testConfig.pathToChromeOSX)
+    System.setProperty("webdriver.chrome.driver", testConfig.pathToChrome)
     val chromeCapabilities = DesiredCapabilities.chrome
     // TODO useless atm because we can't click to trigger clipper see: http://stackoverflow.com/questions/25557533/open-a-chrome-extension-through-selenium-webdriver
     // TODO there is still a hope to load it manually but i have not tried it yet
@@ -74,7 +88,7 @@ object TestConfig {
 
   private def createFirefoxWebDriver: WebDriver = {
     val baseCaps = DesiredCapabilities.firefox
-    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefoxOSX)
+    System.setProperty("webdriver.firefox.bin",testConfig.pathToFirefox)
 
     new FirefoxDriver(baseCaps)
   }
@@ -99,9 +113,9 @@ object TestConfig {
   }
 
   private def createWebDriver: WebDriver = {
-    val webDriver: WebDriver = testConfig match {
-      case TestConfig(_, "chrome", _, _, _, _, _, _) => createChromeDriver
-      case TestConfig(_, "firefox", _, _, _, _, _, _) => createFirefoxWebDriver
+    val webDriver: WebDriver = testConfig.browser match {
+      case "chrome" => createChromeDriver
+      case "firefox" => createFirefoxWebDriver
       // case TestConfig("phantomjs", _, _, _, _, _, _) => createPhantomJSDriver
       // case TestConfig("grid", _, _, _, _, _, _) => createSeleniumGridDriver // forget selenium grid for the moment
     }
