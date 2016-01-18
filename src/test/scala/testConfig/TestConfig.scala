@@ -10,45 +10,74 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.{RemoteWebDriver, CapabilityType, DesiredCapabilities}
 
 
-abstract case class TestConfig (
-                        browser: String,
-                        baseUrl: String = "localhost:9000",
-                        pathToChrome: String,
-                        pathToFirefox: String,
-                        size: Option[(Int, Int)] = Some((1024, 728))
-                      )
 
-class LinuxTestConfig() extends TestConfig (
-                            browser = "firefox",
-                            baseUrl = "localhost:9000",
-                            pathToChrome = "/usr/bin/google-chrome",
-                            pathToFirefox = "/usr/bin/firefox"
-                          )
+object Browser extends Enumeration {
+  val FIREFOX = Value("FIREFOX")
+  val CHROME = Value("CHROME")
+}
 
-class OSXTestConfig() extends TestConfig (
-                            browser = "firefox",
-                            baseUrl = "localhost:9000",
-                            pathToChrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-                            pathToFirefox = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin"
-                          )
+object BaseUrl extends Enumeration {
+  val LOCALHOST = Value("localhost:9000")
+  val STAGING = Value("staging.stample.co")
+  val DEV = Value("https://dev.stample.co")
+  val PROD = Value("stample.co")
+}
+
+case class TestConfig(
+                           browser: Browser.Value,
+                           baseUrl: BaseUrl.Value,
+                           pathToChrome: String,
+                           pathToFirefox: String,
+                           size: Option[(Int, Int)] = Some(1024, 728)
+                         )
+
+object configBuilder {
+  def buildConfig = {
+    val osType: Option[String] = Option(System.getenv("OS"))
+    osType match {
+      case Some("OSX") => osxConfig
+      case Some("LINUX") => linuxConfig
+      case Some(wrongOsName) => throw new Error(s"Wrong os type, available os are OSX and LINUX: $wrongOsName")
+      case None => throw new Error(s"No os type, it must be set as an environment variable")
+    }
+  }
+
+  private val linuxConfig: TestConfig = TestConfig(
+    browser = Browser.CHROME,
+    baseUrl = getBaseUrl,
+    pathToChrome = "/usr/bin/google-chrome",
+    pathToFirefox = "/usr/bin/firefox"
+  )
+
+  private val osxConfig: TestConfig = TestConfig(
+    browser = Browser.FIREFOX,
+    baseUrl = getBaseUrl,
+    pathToChrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    pathToFirefox = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin"
+  )
+
+  private def getBaseUrl = {
+    val hostname: Option[String] = Option(System.getenv("hostname"))
+    println("HOSTNAME = " + hostname.getOrElse("no hostname"))
+    hostname match {
+      case Some("dev") => BaseUrl.DEV
+      case Some("staging") => BaseUrl.STAGING
+      case Some("prod") => BaseUrl.PROD
+      case _ => BaseUrl.LOCALHOST
+    }
+  }
+}
 
 
 /**
   * Created by dev on 20/11/15.
   */
 object TestConfig {
-  val testConfig = {
-    val osType: Option[String] = Option(System.getenv("OS"))
-    osType match {
-      case Some("OSX") => new OSXTestConfig()
-      case Some("LINUX") => new LinuxTestConfig()
-      case Some(wrongOsName) => throw new Error(s"Wrong os type, available os are OSX and LINUX: $wrongOsName")
-      case None => throw new Error(s"No os type, it must be set as an environment variable")
-    }
-  }
+  val testConfig = configBuilder.buildConfig
+
   val webDriver: WebDriver = createWebDriver
 
-  def baseUrl = testConfig.baseUrl
+  def baseUrl = testConfig.baseUrl.toString
 
   private def getDefaultCapabilities: DesiredCapabilities = {
     val baseCaps = new DesiredCapabilities
@@ -114,10 +143,8 @@ object TestConfig {
 
   private def createWebDriver: WebDriver = {
     val webDriver: WebDriver = testConfig.browser match {
-      case "chrome" => createChromeDriver
-      case "firefox" => createFirefoxWebDriver
-      // case TestConfig("phantomjs", _, _, _, _, _, _) => createPhantomJSDriver
-      // case TestConfig("grid", _, _, _, _, _, _) => createSeleniumGridDriver // forget selenium grid for the moment
+      case Browser.CHROME => createChromeDriver
+      case Browser.FIREFOX => createFirefoxWebDriver
     }
     setMaxTimeoutBetweenActions(webDriver, 5)
     setFullscreen(webDriver)
