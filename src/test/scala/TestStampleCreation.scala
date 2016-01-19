@@ -9,10 +9,6 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
   val summary: String = "&\\\"'()àø@#¨€*`£%ù+=:/.;…∞?,çÇ«»¶å{[}]—‘’“”ë„´•ŸÑ~ßb◊©≈‹ ≤<>µ¬ÈÏÌﬁƒ∂Ò‡æÂê®†Úºîœπô"
   val description: String =
     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis ex ut orci venenatis pharetra at ut tellus. Vestibulum at enim ultricies, blandit ipsum ac, rhoncus diam. Cras a orci ac elit cursus pulvinar sit amet ornare elit.</p>" +
-    "<p>Sed semper massa vel consequat vehicula. Maecenas in aliquet erat, sed pulvinar felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse leo arcu, suscipit in risus pretium, maximus volutpat neque.</p>" +
-    "<p>Quisque vel vehicula nibh. Etiam semper nisi in elementum aliquet. Sed efficitur diam at ligula tempus, at molestie dolor suscipit. Nulla aliquam odio ac vulputate congue. In porta congue libero, in viverra eros imperdiet vitae.</p>" +
-    "<p>Vivamus condimentum vel leo vel pretium. Fusce interdum nibh augue, et congue nunc porttitor in. Donec eu ligula in ligula euismod commodo sed sed nisi. Nulla facilisi.</p>" +
-    "<p>Suspendisse potenti. Proin ornare justo sed nulla lobortis, non sodales libero accumsan. Sed commodo justo ut porta maximus. Sed vitae augue nec erat tempor posuere elementum quis mauris.</p>" +
     "<p>Aenean faucibus tincidunt quam, fringilla gravida dui fringilla in. Cras porta augue vitae tortor tristique consectetur. Phasellus malesuada congue aliquet. Phasellus sodales sodales eros, ut lacinia lacus lobortis sit amet. Nulla blandit libero sit amet mi dictum efficitur.</p> "
   val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
   val photo1: String = "/Users/dev/Downloads/Haddock.jpg"

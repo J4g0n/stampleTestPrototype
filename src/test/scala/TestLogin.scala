@@ -20,7 +20,6 @@ class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with Stampl
 
       Given("User connect to the Stample homepage")
       homePage.openPage
-      assert(homePage.isCurrentUrlEqualsTo(baseUrl + "login"))
 
       When("User fills sign in form and submit")
       homePage.signInWith(username, password)

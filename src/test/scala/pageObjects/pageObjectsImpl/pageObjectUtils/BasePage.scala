@@ -11,7 +11,7 @@ abstract class BasePage (val pageUrl: String = TestConfig.baseUrl) extends Page 
     this
   }
 
-  def isCurrentUrlEqualsTo(url: String): Boolean = currentUrl == url
+  def getCurrentUrl: String = currentUrl
 
   def closePage = close
 

@@ -17,13 +17,13 @@ object Browser extends Enumeration {
 }
 
 object BaseUrl extends Enumeration {
-  val LOCALHOST = Value("localhost:9000")
-  val STAGING = Value("staging.stample.co")
+  val LOCALHOST = Value("http://localhost:9000")
+  val STAGING = Value("http://staging.stample.co")
   val DEV = Value("https://dev.stample.co")
-  val PROD = Value("stample.co")
+  val PROD = Value("http://stample.co")
 }
 
-case class TestConfig(
+case class SeleniumConfig(
                            browser: Browser.Value,
                            baseUrl: BaseUrl.Value,
                            pathToChrome: String,
@@ -42,14 +42,14 @@ object configBuilder {
     }
   }
 
-  private val linuxConfig: TestConfig = TestConfig(
+  private val linuxConfig: SeleniumConfig = SeleniumConfig(
     browser = getPreferredBrowser,
     baseUrl = getBaseUrl,
     pathToChrome = "/usr/bin/google-chrome",
     pathToFirefox = "/usr/bin/firefox"
   )
 
-  private val osxConfig: TestConfig = TestConfig(
+  private val osxConfig: SeleniumConfig = SeleniumConfig(
     browser = getPreferredBrowser,
     baseUrl = getBaseUrl,
     pathToChrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -86,7 +86,7 @@ object TestConfig {
 
   val webDriver: WebDriver = createWebDriver
 
-  def baseUrl = testConfig.baseUrl.toString
+  val baseUrl = testConfig.baseUrl.toString
 
   private def getDefaultCapabilities: DesiredCapabilities = {
     val baseCaps = new DesiredCapabilities

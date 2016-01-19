@@ -10,5 +10,5 @@ trait Page {
 
   def quitBrowser: Unit
 
-  def isCurrentUrlEqualsTo(url: String): Boolean
+  def getCurrentUrl: String
 }
