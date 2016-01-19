@@ -10,7 +10,6 @@ scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
   "org.scalatest"						%		"scalatest_2.11" 	%	"2.2.4",
-  "com.github.kxbmap" %% "configs" % "0.3.0",
   "com.codeborne"						%		"phantomjsdriver" 	%	"1.2.1",
   // "com.github.detro"						%		"phantomjsdriver" 	%	"1.2.0",
   // "org.specs2" 							%%	"specs2" 					%	"2.1.1"			%	"test",

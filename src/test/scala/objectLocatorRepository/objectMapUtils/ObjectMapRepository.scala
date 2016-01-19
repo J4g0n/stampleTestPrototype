@@ -1,10 +1,5 @@
 package objectLocatorRepository.objectMapUtils
 
-import java.io.File
-
-import com.typesafe.config.Config
-import com.typesafe.config.ConfigFactory
-
 
 sealed abstract class Selector(val value: String, selectorType: String)
 case class CssSelector(override val value: String) extends Selector(value, "id")
@@ -13,23 +8,6 @@ case class XPathSelector(override val value: String) extends Selector(value, "xp
 case class ClassSelector(override val value: String) extends Selector(value, "class")
 // TODO investigate a way to build css query from template using some king of build function
 //case class TemplateSelector(override val value: String)(val formatter: String => Selector) extends Selector(value, "cssTemplate")
-
-
-trait MapRepository[T] {
-
-  protected val path: String = ""
-  val configManager = {
-    val filename = "selectorsMapObject.conf"
-    val mapObjectFile = new File(filename)
-    ConfigFactory.parseFile(mapObjectFile)
-  }
-
-  def deserializeToCaseClass(deserializer: Config => T): T = deserializer(configManager)
-
-  implicit def strToSelector(keyId: String): Selector = {
-    ObjectMapRepository.getSelectorFromString(keyId)
-  }
-}
 
 
 trait ObjectMapRepository {
