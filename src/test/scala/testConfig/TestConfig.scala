@@ -33,12 +33,12 @@ case class TestConfig(
 
 object configBuilder {
   def buildConfig = {
-    val osType: Option[String] = Option(System.getenv("OS"))
+    val osType: String = System.getProperty("os.name")
+    println("OS = " + osType)
     osType match {
-      case Some("OSX") => osxConfig
-      case Some("LINUX") => linuxConfig
-      case Some(wrongOsName) => throw new Error(s"Wrong os type, available os are OSX and LINUX: $wrongOsName")
-      case None => throw new Error(s"No os type, it must be set as an environment variable")
+      case "Mac OS X" => osxConfig
+      case "Linux" => linuxConfig
+      case notSupportedOs /* like windaube ahah */ => throw new Error(s"Not supported OS, available os are OSX and LINUX: $notSupportedOs")
     }
   }
 
@@ -66,12 +66,21 @@ object configBuilder {
       case _ => BaseUrl.LOCALHOST
     }
   }
+
+  private def getPreferredBrowser = {
+    val browser: Option[String] = Option(System.getenv("TEST_BROWSER"))
+    println("TEST_BROWSER = " + browser.getOrElse("no browser specified"))
+    browser match {
+      case Some("firefox") => Browser.FIREFOX
+      case Some("chrome") => Browser.CHROME
+      // default browser is chrome because it can run on both local machine and server
+      // (+ it seems like everyone in the team is using chrome to develop)
+      case _ => Browser.CHROME
+    }
+  }
 }
 
 
-/**
-  * Created by dev on 20/11/15.
-  */
 object TestConfig {
   val testConfig = configBuilder.buildConfig
 

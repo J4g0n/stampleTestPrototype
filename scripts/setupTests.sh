@@ -25,8 +25,8 @@ sudo apt-get install chromium
 echo "Installing chromedriver"
 wget -N http://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
-mv chromedriver ~/chromedriver
-
+mkdir ~/applications
+mv chromedriver ~/applications/chromedriver
 
 # create symlink to daemon
 # ln -s ./xvbfDaemon /etc/init.d/xvbf
