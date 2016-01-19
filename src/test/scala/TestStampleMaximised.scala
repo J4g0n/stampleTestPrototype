@@ -5,8 +5,8 @@ import testUtils.StampleMaximisedComponents
   * Created by dev on 16/12/15.
   */
 class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers with StampleMaximisedComponents {
-  val username: String = "Username2"
-  val password: String = "Password"
+  val username: String = "username"
+  val password: String = "password"
   val hashtag1: String = "HASHTAG4"
   val hashtag2: String = "HASHTAG5"
   val hashtag3: String = "HASHTAG6"

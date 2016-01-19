@@ -11,7 +11,7 @@ class TestSignup extends FeatureSpec with GivenWhenThen with Matchers with Stamp
   val username: String = s"JoDalton$userNumber"
   val firstname: String = "moins"
   val lastname: String = "exunard"
-  val password: String = "Password"
+  val password: String = "password"
   val baseUrl: String = TestConfig.baseUrl
 
   info("As a Visitor")

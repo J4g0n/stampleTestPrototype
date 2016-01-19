@@ -5,8 +5,8 @@ import testUtils.NavigationComponents
 
 class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with NavigationComponents {
 
-  val username: String = "Username2"
-  val password: String = "Password"
+  val username: String = "username"
+  val password: String = "password"
   val baseUrl: String = TestConfig.baseUrl
 
   info("As a Stample User")

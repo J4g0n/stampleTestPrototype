@@ -3,8 +3,8 @@ import testUtils.StampleCreationComponents
 
 
 class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with StampleCreationComponents {
-  val username: String = "Username2"
-  val password: String = "Password"
+  val username: String = "username"
+  val password: String = "password"
   val title: String = "<div>Lorem ipsum dolor sit amet<p>Sed quis ex ut orci</p></div>"
   val summary: String = "&\\\"'()àø@#¨€*`£%ù+=:/.;…∞?,çÇ«»¶å{[}]—‘’“”ë„´•ŸÑ~ßb◊©≈‹ ≤<>µ¬ÈÏÌﬁƒ∂Ò‡æÂê®†Úºîœπô"
   val description: String =
