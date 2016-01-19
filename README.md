@@ -49,4 +49,3 @@ On mac, open terminal and do:
 ## On phantomJS (there are bugs but it can be fixed i just need to figure it out): 
 TODO: currently it is a little bit problematic we have to solve this bug
 https://github.com/ariya/phantomjs/issues/11637
-
