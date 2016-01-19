@@ -43,21 +43,21 @@ object configBuilder {
   }
 
   private val linuxConfig: TestConfig = TestConfig(
-    browser = Browser.CHROME,
+    browser = getPreferredBrowser,
     baseUrl = getBaseUrl,
     pathToChrome = "/usr/bin/google-chrome",
     pathToFirefox = "/usr/bin/firefox"
   )
 
   private val osxConfig: TestConfig = TestConfig(
-    browser = Browser.FIREFOX,
+    browser = getPreferredBrowser,
     baseUrl = getBaseUrl,
     pathToChrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     pathToFirefox = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin"
   )
 
   private def getBaseUrl = {
-    val hostname: Option[String] = Option(System.getenv("hostname"))
+    val hostname: Option[String] = Option(System.getenv("HOSTNAME"))
     println("HOSTNAME = " + hostname.getOrElse("no hostname"))
     hostname match {
       case Some("dev") => BaseUrl.DEV
