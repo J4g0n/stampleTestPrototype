@@ -49,7 +49,7 @@ case class SeleniumConfig(
                            size: Option[(Int, Int)] = Some(1200, 780)
                          )
 
-object configBuilder {
+object SeleniumConfig {
   def buildConfig = {
     val osType: String = System.getProperty("os.name")
     println("OS = " + osType)
@@ -75,7 +75,7 @@ object configBuilder {
 
 
 object TestConfig {
-  val testConfig = configBuilder.buildConfig
+  val testConfig = SeleniumConfig.buildConfig
 
   val webDriver: WebDriver = createWebDriver
 
