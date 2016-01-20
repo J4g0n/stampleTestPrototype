@@ -31,24 +31,24 @@ On mac, open terminal and do:
 ## Launch tests (on server)
 
 0. Run setup test environment script:
-    scripts/setupTests
+  > scripts/setupTests
     
 1. Move resources to home folder:
-    mv res/ ~/res/
+  > mv res/ ~/res/
 
 2. Add display value globally and preferred browser, add at the end of your .bashrc and make it available in your session by typing source:
-    export TEST_BROWSER=[chrome | firefox]
-    export DISPLAY=:5 
-    source ~/.bashrc
+  > export TEST_BROWSER=[chrome | firefox]
+  > export DISPLAY=:5 
+  > source ~/.bashrc
 
 3. Launch xvbf:
-    scripts/xvbf start
+  > scripts/xvbf start
 
 4. (if using chrome) On firefox, with proper config:
-    ~/applications/chromedriver
+  > ~/applications/chromedriver
 
 5. Launch tests:
-    ./activator test    
+  > ./activator test    
        
 
 ## On phantomJS (there are bugs but it can be fixed i just need to figure it out): 
