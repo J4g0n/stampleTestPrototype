@@ -24,8 +24,26 @@ object BaseUrl extends Enumeration {
 }
 
 case class SeleniumConfig(
-                           browser: Browser.Value,
-                           baseUrl: BaseUrl.Value,
+                           baseUrl: BaseUrl.Value = {
+                             val hostname: Option[String] = Option(System.getenv("HOSTNAME"))
+                             hostname match {
+                               case Some("dev") => BaseUrl.DEV
+                               case Some("staging") => BaseUrl.STAGING
+                               case Some("prod") => BaseUrl.PROD
+                               case _ => BaseUrl.LOCALHOST
+                             }
+                           },
+                           browser: Browser.Value = {
+                             val browser: Option[String] = Option(System.getenv("TEST_BROWSER"))
+                             browser match {
+                               case Some("firefox") => Browser.FIREFOX
+                               case Some("chrome") => Browser.CHROME
+                               // default browser is chrome because it can run on both local machine and server
+                               // (+ it seems like everyone in the team is using chrome to develop)
+                               case _ => Browser.CHROME
+                             }
+                           },
+                           resourcesPath: String,
                            pathToChrome: String,
                            pathToFirefox: String,
                            size: Option[(Int, Int)] = Some(1200, 780)
@@ -43,41 +61,16 @@ object configBuilder {
   }
 
   private val linuxConfig: SeleniumConfig = SeleniumConfig(
-    browser = getPreferredBrowser,
-    baseUrl = getBaseUrl,
+    resourcesPath = "/home/stample/",
     pathToChrome = "/usr/bin/google-chrome",
     pathToFirefox = "/usr/bin/firefox"
   )
 
   private val osxConfig: SeleniumConfig = SeleniumConfig(
-    browser = getPreferredBrowser,
-    baseUrl = getBaseUrl,
+    resourcesPath = "~/",
     pathToChrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     pathToFirefox = "/Applications/FirefoxDeveloperEdition.app/Contents/MacOS/firefox-bin"
   )
-
-  private def getBaseUrl = {
-    val hostname: Option[String] = Option(System.getenv("HOSTNAME"))
-    println("HOSTNAME = " + hostname.getOrElse("no hostname"))
-    hostname match {
-      case Some("dev") => BaseUrl.DEV
-      case Some("staging") => BaseUrl.STAGING
-      case Some("prod") => BaseUrl.PROD
-      case _ => BaseUrl.LOCALHOST
-    }
-  }
-
-  private def getPreferredBrowser = {
-    val browser: Option[String] = Option(System.getenv("TEST_BROWSER"))
-    println("TEST_BROWSER = " + browser.getOrElse("no browser specified"))
-    browser match {
-      case Some("firefox") => Browser.FIREFOX
-      case Some("chrome") => Browser.CHROME
-      // default browser is chrome because it can run on both local machine and server
-      // (+ it seems like everyone in the team is using chrome to develop)
-      case _ => Browser.CHROME
-    }
-  }
 }
 
 
@@ -87,6 +80,8 @@ object TestConfig {
   val webDriver: WebDriver = createWebDriver
 
   val baseUrl = testConfig.baseUrl.toString
+
+  val resourcesPath = testConfig.resourcesPath
 
   private def getDefaultCapabilities: DesiredCapabilities = {
     val baseCaps = new DesiredCapabilities

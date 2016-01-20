@@ -1,8 +1,10 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
+import testConfig.TestConfig
 import testUtils.StampleCreationComponents
 
 
 class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with StampleCreationComponents {
+  val resourcesPath = TestConfig.resourcesPath
   val username: String = "username"
   val password: String = "password"
   val title: String = "Lorem ipsum dolor sit amet. Sed quis ex ut orci."
@@ -11,9 +13,9 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" +
     "Aenean faucibus tincidunt quam, fringilla gravida dui fringilla in. Phasellus malesuada congue aliquet."
   val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
-  val photo1: String = "~/res/Haddock.jpg"
-  val photo2: String = "~/res/tournesol.png"
-  val filename: String = "~/res/rxjs.pdf"
+  val photo1: String = s"${resourcesPath}res/unionjack.png"
+  val photo2: String = s"${resourcesPath}res/tournesol.png"
+  val filename: String = s"${resourcesPath}res/rxjs.pdf"
   val comment: String = "Super comment for the win"
   val hashtag1: String = "hahstag1"
   val hashtag2: String = "hahstag2"
@@ -59,7 +61,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       assert(maximisedStample.summary === summary) // test doesn't pass with it
       assert(maximisedStample.description === description)
       assert(maximisedStample.getNthCommentContent(0) === comment)
-      //assert(maximisedStample.descriptionContainsImg)
+      assert(maximisedStample.descriptionContainsImg)
       assert(maximisedStample.descriptionContainsIframe)
       assert(maximisedStample.getNthTagName(0) === "#" + hashtag1)
       assert(maximisedStample.getNthTagName(1) === "#" + hashtag2)

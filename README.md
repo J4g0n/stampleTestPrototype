@@ -24,7 +24,7 @@ On mac, open terminal and do:
   
 5. (Optional) Add environment variable for selected browser default is chrome, append:
   > export TEST_BROWSER=[chrome | firefox]
-  to .bash_profile or .bashrc
+  > # to .bash_profile or .bashrc
   > source ~/.bash[_profile | rc]
 
   

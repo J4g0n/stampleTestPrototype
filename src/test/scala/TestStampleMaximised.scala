@@ -31,7 +31,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       assert(maximisedStample.isOpened)
 
       And("stample must contain a picture")
-      //assert(maximisedStample.descriptionContainsImg)
+      assert(maximisedStample.descriptionContainsImg)
 
       And("stample must contain a video")
       assert(maximisedStample.descriptionContainsIframe)
@@ -43,7 +43,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       assert(maximisedStample.getNthCommentContent(0) contains "")
 
       And("stample must have at least one attachment")
-      assert(maximisedStample.fileNthAttachedName(0) !== 0)
+      assert(maximisedStample.fileNthAttachedName(0) !== "")
 
       And("stample must have at least one hashtag")
       assert(maximisedStample.getNthTagName(0) !== "")
@@ -57,7 +57,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       maximisedStample.addHashtag(hashtag3)
       maximisedStample.deleteNthTag(0)
       maximisedStample.likeStample
-      //maximisedStample.addComment(comment1)
+      maximisedStample.addComment(comment1)
       maximisedStample.editComment(0, editComment)
       maximisedStample.deleteNthComment(0)
       maximisedStample.editStample
