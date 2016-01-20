@@ -5,15 +5,15 @@ import testUtils.StampleCreationComponents
 class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with StampleCreationComponents {
   val username: String = "username"
   val password: String = "password"
-  val title: String = "<div>Lorem ipsum dolor sit amet<p>Sed quis ex ut orci</p></div>"
-  val summary: String = "&\\\"'()àø@#¨€*`£%ù+=:/.;…∞?,çÇ«»¶å{[}]—‘’“”ë„´•ŸÑ~ßb◊©≈‹ ≤<>µ¬ÈÏÌﬁƒ∂Ò‡æÂê®†Úºîœπô"
+  val title: String = "Lorem ipsum dolor sit amet. Sed quis ex ut orci."
+  val summary: String = "Sed quis ex ut orci."
   val description: String =
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis ex ut orci venenatis pharetra at ut tellus. Vestibulum at enim ultricies, blandit ipsum ac, rhoncus diam. Cras a orci ac elit cursus pulvinar sit amet ornare elit.</p>" +
-    "<p>Aenean faucibus tincidunt quam, fringilla gravida dui fringilla in. Cras porta augue vitae tortor tristique consectetur. Phasellus malesuada congue aliquet. Phasellus sodales sodales eros, ut lacinia lacus lobortis sit amet. Nulla blandit libero sit amet mi dictum efficitur.</p> "
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" +
+    "Aenean faucibus tincidunt quam, fringilla gravida dui fringilla in. Phasellus malesuada congue aliquet."
   val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
-  val photo1: String = "/Users/dev/Downloads/Haddock.jpg"
-  val photo2: String = "/Users/dev/Downloads/tournesol.png"
-  val filename: String = "/Users/dev/Downloads/MIT.pdf"
+  val photo1: String = "~/res/Haddock.jpg"
+  val photo2: String = "~/res/tournesol.png"
+  val filename: String = "~/res/rxjs.pdf"
   val comment: String = "Super comment for the win"
   val hashtag1: String = "hahstag1"
   val hashtag2: String = "hahstag2"
@@ -32,7 +32,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       assert(stampleCreator.isOpened)
 
       When("User fills stample and save it")
-      // TODO order of actions matters (especially for upload it seems) i don't understand why right now but it can be a matter with state cursor which doesn't represent datas
+      // TODO order of actions matters (especially for upload it seems) i don't understand why right now
       stampleCreator.toggleMaximisedView
       stampleCreator.fillStample(title, summary, description)
       stampleCreator.addPhoto(photo1)
@@ -49,7 +49,6 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       stampleCreator.saveStample
 
       Then("stample should appear on timeline")
-      // TODO We should find another way to validate, other than doing actions inside browser
       navigationBar.openMyLibraries
       timeline.openNthLibrary(0)
       timeline.openNthStample(0)
@@ -59,7 +58,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
       assert(maximisedStample.title === title)
       assert(maximisedStample.summary === summary) // test doesn't pass with it
       assert(maximisedStample.description === description)
-      assert(maximisedStample.getNthComment(0) === comment)
+      assert(maximisedStample.getNthCommentContent(0) === comment)
       assert(maximisedStample.descriptionContainsImg)
       assert(maximisedStample.descriptionContainsIframe)
       assert(maximisedStample.getNthTagName(0) === "#" + hashtag1)

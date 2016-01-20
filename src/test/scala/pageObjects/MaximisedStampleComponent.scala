@@ -9,7 +9,7 @@ trait MaximisedStampleComponent {
   def description: String
   def fileNthAttachedName(n: Int): String
   def getNthTagName(n: Int): String
-  def getNthComment(n: Int): String
+  def getNthCommentContent(n: Int): String
 
   def setReminder(date: String): Unit
   def setFavorite: Unit

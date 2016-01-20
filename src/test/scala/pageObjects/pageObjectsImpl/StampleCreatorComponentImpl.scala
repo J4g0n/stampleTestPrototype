@@ -50,7 +50,7 @@ trait StampleCreatorComponentImpl {
     def addHashtag(hashtag: String): Unit = {
       find(STAMPLE_CREATOR_HASHTAG_BUTTON).map(click on _)
       fill(STAMPLE_CREATOR_HASHTAG_FIELD) withText hashtag
-      pressKeys(" ") // TODO mandatory to save hashtag it's also possible to use ENTER (just dunno its code)
+      pressKeys("\r")
     }
 
     def removeNthTag(n: Int): Unit = {

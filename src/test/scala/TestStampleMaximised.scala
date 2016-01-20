@@ -40,7 +40,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       assert(maximisedStample.isReminderSet)
 
       And("stample must have been commented")
-      assert(maximisedStample.getNthComment(0) contains "")
+      assert(maximisedStample.getNthCommentContent(0) contains "")
 
       And("stample must have at least one attachment")
       assert(maximisedStample.fileNthAttachedName(0) !== 0)
@@ -57,7 +57,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       maximisedStample.addHashtag(hashtag3)
       maximisedStample.deleteNthTag(0)
       maximisedStample.likeStample
-      maximisedStample.addComment(comment1)
+      //maximisedStample.addComment(comment1)
       maximisedStample.editComment(0, editComment)
       maximisedStample.deleteNthComment(0)
       maximisedStample.editStample

@@ -28,7 +28,7 @@ case class SeleniumConfig(
                            baseUrl: BaseUrl.Value,
                            pathToChrome: String,
                            pathToFirefox: String,
-                           size: Option[(Int, Int)] = Some(1024, 728)
+                           size: Option[(Int, Int)] = Some(1200, 780)
                          )
 
 object configBuilder {

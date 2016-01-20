@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions
 import org.scalatest.selenium.WebBrowser
 import testConfig.TestConfig
 
+import scala.util.{Success, Failure, Try}
+
 
 trait WebBrowserCustom extends WebBrowser {
   implicit val webDriver: WebDriver = TestConfig.webDriver
@@ -58,7 +60,14 @@ trait WebBrowserCustom extends WebBrowser {
     hover(selector)
   }
 
-  def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = findAll(s).drop(n).next
+  def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = {
+      Try {
+        findAll(s).drop(n).next
+      } match {
+        case Failure(error) => throw new Error(s"Fail to find $n-th ${s.queryString} element with error: \n$error")
+        case Success(element) => element
+      }
+  }
 
   def tryFindElementWithText(s: this.Query, actionName: String)(implicit webDriver: WebDriver): this.Element = findAll(s).find(_.text.toLowerCase == actionName).getOrElse(throw new Error("Impossible to get by text element for query: " + s + " and text " + actionName))
 

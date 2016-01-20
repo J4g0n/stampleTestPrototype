@@ -6,12 +6,13 @@ import objectLocatorRepository.objectMapUtils.{Selector, ObjectMapRepository}
   * Created by dev on 15/12/15.
   */
 trait MaximisedStampleComponentSelectors extends ObjectMapRepository {
-  val MAXIMISED_STAMPLE: Selector = "maximisedStample"
+  val MAXIMISED_STAMPLE: Selector = "maximisedStample.stample"
   val MAXIMISED_STAMPLE_CLOSE_BUTTON: Selector = "maximisedStample.closeButton"
   val MAXIMISED_STAMPLE_TITLE: Selector = "maximisedStample.title"
   val MAXIMISED_STAMPLE_SUMMARY: Selector = "maximisedStample.summary"
   val MAXIMISED_STAMPLE_DESCRIPTION: Selector = "maximisedStample.description"
   val MAXIMISED_STAMPLE_COMMENT: Selector = "maximisedStample.comment"
+  val MAXIMISED_STAMPLE_COMMENT_CONTENT: Selector = "maximisedStample.commentContent"
   val MAXIMISED_STAMPLE_CREATOR: Selector = "maximisedStample.userCreator"
   val MAXIMISED_STAMPLE_USER_LAST_EVENT: Selector = "maximisedStample.userLastEvent"
   val MAXIMISED_STAMPLE_CATEGORY: Selector = "maximisedStample.category"

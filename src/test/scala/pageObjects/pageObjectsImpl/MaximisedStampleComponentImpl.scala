@@ -17,20 +17,18 @@ trait MaximisedStampleComponentImpl {
       click on MAXIMISED_STAMPLE_MORE_BUTTON
     }
 
-    private def hoverStample = hover(MAXIMISED_STAMPLE_TITLE)
+    private def hoverStample = hover(MAXIMISED_STAMPLE)
 
     // TODO should return Regexp => Unit to ensure actionName match text and language
     private def doActionOnStample: String => Unit = { actionName =>
-      scrollUp
-      hoverStample
       click on MAXIMISED_STAMPLE_MORE_BUTTON
       click on tryFindElementWithText(MORE_BUTTON_NAME, actionName)
     }
 
     private def doActionOnComment(n: Int): String => Unit = { actionName =>
-      val commentElement = findNthElement(MAXIMISED_STAMPLE_COMMENT_MORE_BUTTON, n)
+      val commentElement = findNthElement(MAXIMISED_STAMPLE_COMMENT, n)
       hover(commentElement)
-      click on commentElement
+      click on MAXIMISED_STAMPLE_COMMENT_MORE_BUTTON
       click on tryFindElementWithText(MORE_BUTTON_NAME, actionName)
     }
 
@@ -45,7 +43,7 @@ trait MaximisedStampleComponentImpl {
 
     def getNthTagName(n: Int): String = findNthElement(MAXIMISED_STAMPLE_HASHTAG_TEXT, n).text
 
-    def getNthComment(n: Int): String = findNthElement(MAXIMISED_STAMPLE_COMMENT, n).text
+    def getNthCommentContent(n: Int): String = findNthElement(MAXIMISED_STAMPLE_COMMENT_CONTENT, n).text
 
     def setReminder(date: String): Unit = {
       hoverStample
@@ -76,7 +74,7 @@ trait MaximisedStampleComponentImpl {
 
     def addComment(comment: String): Unit = {
       click on MAXIMISED_STAMPLE_COMMENT_BUTTON
-      fill (MAXIMISED_STAMPLE_NEW_COMMENT_EDITOR) withText comment
+      pressKeys(comment)
       click on MAXIMISED_STAMPLE_NEW_COMMENT_SAVE_BUTTON
     }
 
@@ -93,7 +91,7 @@ trait MaximisedStampleComponentImpl {
     def addHashtag(tagName: String): Unit = {
       click on MAXIMISED_STAMPLE_TAG_BUTTON
       fill (MAXIMISED_STAMPLE_HASHTAG_EDITOR) withText tagName
-      pressKeys(" ")
+      pressKeys("\r")
     }
 
     def deleteNthTag(n: Int): Unit = {
