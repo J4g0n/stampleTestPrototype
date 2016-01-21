@@ -1,14 +1,10 @@
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
 import testConfig.TestConfig
 import testUtils.NavigationComponents
+import testUtils.testDatas.SignupData
 
 
-class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with NavigationComponents {
-
-  val username: String = "username"
-  val password: String = "password"
-  val baseUrl: String = TestConfig.baseUrl
-
+class TestNavigation extends NavigationComponents with SignupData {
   info("As a Stample User")
   info("I want to be able to navigate into Stample")
 
@@ -17,7 +13,7 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with N
     scenario("User navigate through his home folder") {
 
       Given("User is connected to the Stample app")
-      mainPage.openPage(username, password)
+      mainPage.openPage(baseUser.username, baseUser.password)
       assert(mainPage.stampleRootDisplayed)
 
       When("User click on home button")
@@ -32,7 +28,7 @@ class TestNavigation extends FeatureSpec with GivenWhenThen with Matchers with N
     scenario("User navigate through his home folder and a sub folder") {
 
       Given("User is connected to the Stample app")
-      mainPage.openPage(username, password)
+      mainPage.openPage(baseUser.username, baseUser.password)
 
       When("User click on home button")
       navigationBar.openMyLibraries

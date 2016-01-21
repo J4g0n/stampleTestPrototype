@@ -1,19 +1,10 @@
-import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
+import org.scalatest.{BeforeAndAfter, FeatureSpec, GivenWhenThen, Matchers}
 import testConfig.TestConfig
-import testUtils.StamplePages
+import testUtils.{OnBoardingComponents, StamplePages}
+import testUtils.testDatas.SignupData
 
 
-class TestSignup extends FeatureSpec with GivenWhenThen with Matchers with StamplePages {
-
-  // TODO ensure user doesn't already exist
-  private val userNumber = (Math.random() * 1000000).toInt.toString
-  val email: String = s"quelquun$userNumber@stample.co"
-  val username: String = s"JoDalton$userNumber"
-  val firstname: String = "moins"
-  val lastname: String = "exunard"
-  val password: String = "password"
-  val baseUrl: String = TestConfig.baseUrl
-
+class TestSignup extends OnBoardingComponents with SignupData {
   info("As a Visitor")
   info("I want to be able to sign up to Stample")
   info("So i can start using Stample")
@@ -27,14 +18,28 @@ class TestSignup extends FeatureSpec with GivenWhenThen with Matchers with Stamp
       homePage.openPage
 
       When("User fills sign in form and submit")
-      homePage.signUpWith(email, username, firstname, lastname, password)
+      homePage.signUpWith(user1.email, user1.username, user1.firstname, user1.lastname, user1.password)
 
       Then("User should have access to its content on Stample")
       mainPage.stampleRootDisplayed
+
+      And("OnBoarding is displayed")
+      assert(onBoarding.isOpen)
     }
 
-/*    scenario("User sign from his mobile") {
+    scenario("User sign up and close onBoarding") {
+      Given("User connect to the Stample homepage")
+      homePage.openPage
 
-    }*/
+      When("User fills sign in form and submit")
+      homePage.signUpWith(baseUser.email, baseUser.username, baseUser.firstname, baseUser.lastname, baseUser.password)
+      onBoarding.closeOnBoarding
+
+      Then("User should have access to its content on Stample")
+      mainPage.stampleRootDisplayed
+
+      And("OnBoarding isn't displayed")
+      assert(!onBoarding.isOpen)
+    }
   }
 }

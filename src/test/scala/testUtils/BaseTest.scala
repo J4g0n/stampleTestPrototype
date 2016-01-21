@@ -1,11 +1,15 @@
 package testUtils
 
+import org.scalatest.{Matchers, GivenWhenThen, FeatureSpec}
 import pageObjects.pageObjectsImpl._
 
 
 /**
   * Created by dev on 04/12/15.
   */
+// Setup for specific tests
+abstract class BaseTestSetup extends FeatureSpec with GivenWhenThen with Matchers
+
 
 class AllObjects
   extends AppMainPageImpl
@@ -17,19 +21,20 @@ class AllObjects
   with DatePickerComponentImpl
   with VideoEmbeddedPopUpComponentImpl
   with MaximisedStampleComponentImpl
+  with OnBoardingComponentImpl
 object AllObjects {
   val allObjects = new AllObjects
 }
 
 
-trait StamplePages {
+trait StamplePages extends BaseTestSetup  {
   private val allObjects = AllObjects.allObjects
 
   val mainPage = allObjects.appMainPage
   val homePage = allObjects.homePage
 }
 
-trait AllComponents {
+trait AllComponents extends BaseTestSetup {
   private val allObjects = AllObjects.allObjects
 
   val navigationBar = allObjects.navigationBarComponent
@@ -47,6 +52,12 @@ trait StampleMaximisedComponents extends StamplePages {
 
   val navigationBar = allObjects.navigationBarComponent
   val timeline = allObjects.timelineComponent
+}
+
+trait OnBoardingComponents extends StamplePages {
+  private val allObjects = AllObjects.allObjects
+
+  val onBoarding = allObjects.onBoardingComponent
 }
 
 trait StampleCreationComponents extends StamplePages {
@@ -67,4 +78,3 @@ trait NavigationComponents extends StamplePages {
   val navigationBar = allObjects.navigationBarComponent
   val timeline = allObjects.timelineComponent
 }
-

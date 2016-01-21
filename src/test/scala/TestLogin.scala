@@ -1,18 +1,11 @@
-import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
-import testConfig.TestConfig
 import testUtils.StamplePages
+import testUtils.testDatas.SignupData
 
 
-class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with StamplePages {
-
-  val username: String = "username"
-  val password: String = "password"
-  val baseUrl: String = TestConfig.baseUrl
-
+class TestLogin extends StamplePages with SignupData {
   info("As a Stample User")
   info("I want to be able to sign in to Stample")
   info("So i can start using Stample")
-  info("On desktop and mobile devices as well")
 
   feature("Sign in") {
 
@@ -22,7 +15,7 @@ class TestLogin extends FeatureSpec with GivenWhenThen with Matchers with Stampl
       homePage.openPage
 
       When("User fills sign in form and submit")
-      homePage.signInWith(username, password)
+      homePage.signInWith(baseUser.username, baseUser.password)
 
       Then("User should have access to its content on Stample")
       assert(mainPage.stampleRootDisplayed)

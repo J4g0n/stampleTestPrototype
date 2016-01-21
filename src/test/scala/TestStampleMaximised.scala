@@ -1,20 +1,11 @@
 import org.scalatest.{Matchers, GivenWhenThen, FeatureSpec}
 import testUtils.StampleMaximisedComponents
+import testUtils.testDatas.{SignupData, StampleData}
 
 /**
   * Created by dev on 16/12/15.
   */
-class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers with StampleMaximisedComponents {
-  val username: String = "username"
-  val password: String = "password"
-  val hashtag1: String = "HASHTAG4"
-  val hashtag2: String = "HASHTAG5"
-  val hashtag3: String = "HASHTAG6"
-  val comment1: String = "Super comment1"
-  val comment2: String = "Super comment2"
-  val comment3: String = "Super comment3"
-  val editComment: String = "Duper"
-
+class TestStampleMaximised extends StampleMaximisedComponents with StampleData with SignupData {
   info("As a Stample user")
   info("I want to be able to open a Stample in maximised view")
   info("and do some actions on it")
@@ -24,7 +15,7 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
     scenario("User open and use Stample maximised") {
 
       Given("User connect to the Stample homepage")
-      mainPage.openPage(username, password)
+      mainPage.openPage(baseUser.username, baseUser.password)
       navigationBar.openMyLibraries
       timeline.openNthLibrary(0)
       timeline.openNthStample(0)
@@ -52,9 +43,9 @@ class TestStampleMaximised extends FeatureSpec with GivenWhenThen with Matchers 
       When("User interact and edit stample")
       maximisedStample.setReminder("inAMonth")
       maximisedStample.setFavorite
-      maximisedStample.addHashtag(hashtag1)
-      maximisedStample.addHashtag(hashtag2)
-      maximisedStample.addHashtag(hashtag3)
+      maximisedStample.addHashtag(hashtag4)
+      maximisedStample.addHashtag(hashtag5)
+      maximisedStample.addHashtag(hashtag6)
       maximisedStample.deleteNthTag(0)
       maximisedStample.likeStample
       maximisedStample.addComment(comment1)

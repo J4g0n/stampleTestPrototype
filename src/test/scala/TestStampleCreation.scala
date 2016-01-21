@@ -1,26 +1,10 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
 import testConfig.TestConfig
 import testUtils.StampleCreationComponents
+import testUtils.testDatas.{SignupData, StampleData}
 
 
-class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers with StampleCreationComponents {
-  val resourcesPath = TestConfig.resourcesPath
-  val username: String = "username"
-  val password: String = "password"
-  val title: String = "Lorem ipsum dolor sit amet. Sed quis ex ut orci."
-  val summary: String = "Sed quis ex ut orci."
-  val description: String =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" +
-    "Aenean faucibus tincidunt quam, fringilla gravida dui fringilla in. Phasellus malesuada congue aliquet."
-  val youtubeVideoUrl: String = "https://www.youtube.com/watch?v=wNRUzu4fTgw"
-  val photo1: String = s"${resourcesPath}res/unionjack.png"
-  val photo2: String = s"${resourcesPath}res/tournesol.png"
-  val filename: String = s"${resourcesPath}res/rxjs.pdf"
-  val comment: String = "Super comment for the win"
-  val hashtag1: String = "hahstag1"
-  val hashtag2: String = "hahstag2"
-  val hashtag3: String = "hahstag3"
-
+class TestStampleCreation extends StampleCreationComponents with StampleData with SignupData {
   info("As a User")
   info("I want to be able to create a new Stample")
 
@@ -29,7 +13,7 @@ class TestStampleCreation extends FeatureSpec with GivenWhenThen with Matchers w
     scenario("User create a Stample from timeline using new button") {
 
       Given("User is connected to Stample")
-      mainPage.openPage(username, password)
+      mainPage.openPage(baseUser.username, baseUser.password)
       newButton.openStampleCreator
       assert(stampleCreator.isOpened)
 
