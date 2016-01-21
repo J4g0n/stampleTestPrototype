@@ -26,13 +26,7 @@ object User {
 trait SignupData {
   val baseUser = User.baseUser
 
-  val user1 = new User(
-    "simon.andreux+130@gmail.com",
-    "username1",
-    "simon",
-    "andreux",
-    "password"
-  )
+  val randomUser = User.generateRandomUser
 
   val user2 = new User(
     "simon.andreux+140@gmail.com",

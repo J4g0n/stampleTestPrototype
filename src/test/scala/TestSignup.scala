@@ -18,7 +18,7 @@ class TestSignup extends OnBoardingComponents with SignupData {
       homePage.openPage
 
       When("User fills sign in form and submit")
-      homePage.signUpWith(user1.email, user1.username, user1.firstname, user1.lastname, user1.password)
+      homePage.signUpWith(randomUser.email, randomUser.username, randomUser.firstname, randomUser.lastname, randomUser.password)
 
       Then("User should have access to its content on Stample")
       mainPage.stampleRootDisplayed
