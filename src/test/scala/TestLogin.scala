@@ -1,8 +1,8 @@
 import testUtils.StamplePages
-import testUtils.testDatas.SignupData
+import testUtils.testDatas.UserDataProvider
 
 
-class TestLogin extends StamplePages with SignupData {
+class TestLogin extends StamplePages with UserDataProvider {
   info("As a Stample User")
   info("I want to be able to sign in to Stample")
   info("So i can start using Stample")

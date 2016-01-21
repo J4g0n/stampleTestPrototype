@@ -1,11 +1,11 @@
 import org.scalatest.{Matchers, GivenWhenThen, FeatureSpec}
 import testUtils.StampleMaximisedComponents
-import testUtils.testDatas.{SignupData, StampleData}
+import testUtils.testDatas.{UserDataProvider, StampleDataProvider}
 
 /**
   * Created by dev on 16/12/15.
   */
-class TestStampleMaximised extends StampleMaximisedComponents with StampleData with SignupData {
+class TestStampleMaximised extends StampleMaximisedComponents with StampleDataProvider with UserDataProvider {
   info("As a Stample user")
   info("I want to be able to open a Stample in maximised view")
   info("and do some actions on it")
@@ -43,13 +43,13 @@ class TestStampleMaximised extends StampleMaximisedComponents with StampleData w
       When("User interact and edit stample")
       maximisedStample.setReminder("inAMonth")
       maximisedStample.setFavorite
-      maximisedStample.addHashtag(hashtag4)
-      maximisedStample.addHashtag(hashtag5)
-      maximisedStample.addHashtag(hashtag6)
+      maximisedStample.addHashtag(baseStample.hashtags(3))
+      maximisedStample.addHashtag(baseStample.hashtags(4))
+      maximisedStample.addHashtag(baseStample.hashtags(5))
       maximisedStample.deleteNthTag(0)
       maximisedStample.likeStample
-      maximisedStample.addComment(comment1)
-      maximisedStample.editComment(0, editComment)
+      maximisedStample.addComment(baseStample.comments(1))
+      maximisedStample.editComment(0, " edited comment")
       maximisedStample.deleteNthComment(0)
       maximisedStample.editStample
       maximisedStample.closeStample

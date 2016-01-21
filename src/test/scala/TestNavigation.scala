@@ -1,10 +1,10 @@
 import org.scalatest.{FeatureSpec, Matchers, GivenWhenThen}
 import testConfig.TestConfig
 import testUtils.NavigationComponents
-import testUtils.testDatas.SignupData
+import testUtils.testDatas.UserDataProvider
 
 
-class TestNavigation extends NavigationComponents with SignupData {
+class TestNavigation extends NavigationComponents with UserDataProvider {
   info("As a Stample User")
   info("I want to be able to navigate into Stample")
 

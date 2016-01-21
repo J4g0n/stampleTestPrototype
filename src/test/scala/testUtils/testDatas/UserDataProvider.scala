@@ -23,16 +23,8 @@ object User {
   val baseUser = generateRandomUser
 }
 
-trait SignupData {
+trait UserDataProvider {
   val baseUser = User.baseUser
 
-  val randomUser = User.generateRandomUser
-
-  val user2 = new User(
-    "simon.andreux+140@gmail.com",
-    "username2",
-    "josé",
-    "bové",
-    "password"
-  )
+  val genRandomUser = User.generateRandomUser
 }

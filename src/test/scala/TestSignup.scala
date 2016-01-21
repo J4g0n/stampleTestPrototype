@@ -1,10 +1,10 @@
 import org.scalatest.{BeforeAndAfter, FeatureSpec, GivenWhenThen, Matchers}
 import testConfig.TestConfig
 import testUtils.{OnBoardingComponents, StamplePages}
-import testUtils.testDatas.SignupData
+import testUtils.testDatas.UserDataProvider
 
 
-class TestSignup extends OnBoardingComponents with SignupData {
+class TestSignup extends OnBoardingComponents with UserDataProvider {
   info("As a Visitor")
   info("I want to be able to sign up to Stample")
   info("So i can start using Stample")
@@ -18,7 +18,7 @@ class TestSignup extends OnBoardingComponents with SignupData {
       homePage.openPage
 
       When("User fills sign in form and submit")
-      homePage.signUpWith(randomUser.email, randomUser.username, randomUser.firstname, randomUser.lastname, randomUser.password)
+      homePage.signUpWith(genRandomUser.email, genRandomUser.username, genRandomUser.firstname, genRandomUser.lastname, genRandomUser.password)
 
       Then("User should have access to its content on Stample")
       mainPage.stampleRootDisplayed

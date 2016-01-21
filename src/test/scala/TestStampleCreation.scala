@@ -1,10 +1,10 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
 import testConfig.TestConfig
 import testUtils.StampleCreationComponents
-import testUtils.testDatas.{SignupData, StampleData}
+import testUtils.testDatas.{UserDataProvider, StampleDataProvider}
 
 
-class TestStampleCreation extends StampleCreationComponents with StampleData with SignupData {
+class TestStampleCreation extends StampleCreationComponents with StampleDataProvider with UserDataProvider {
   info("As a User")
   info("I want to be able to create a new Stample")
 
@@ -20,16 +20,16 @@ class TestStampleCreation extends StampleCreationComponents with StampleData wit
       When("User fills stample and save it")
       // TODO order of actions matters (especially for upload it seems) i don't understand why right now
       stampleCreator.toggleMaximisedView
-      stampleCreator.fillStample(title, summary, description)
-      stampleCreator.addPhoto(photo1)
-      stampleCreator.addEmbeddedVideo(youtubeVideoUrl)
-      stampleCreator.addHashtag(hashtag1)
+      stampleCreator.fillStample(baseStample.title, baseStample.summary, baseStample.description)
+      stampleCreator.addPhoto(baseStample.photoUrls(0))
+      stampleCreator.addEmbeddedVideo(baseStample.embeddedVideosUrls(0))
+      stampleCreator.addHashtag(baseStample.hashtags(0))
       stampleCreator.toggleMaximisedView
-      stampleCreator.addHashtag(hashtag3)
-      stampleCreator.addComment(comment)
-      stampleCreator.addFile(filename)
+      stampleCreator.addHashtag(baseStample.hashtags(2))
+      stampleCreator.addComment(baseStample.comments(0))
+      stampleCreator.addFile(baseStample.attachments(0))
       stampleCreator.addReminder("inAWeek")
-      stampleCreator.addHashtag(hashtag2)
+      stampleCreator.addHashtag(baseStample.hashtags(1))
       stampleCreator.removeNthTag(1)
       stampleCreator.toggleMaximisedView
       stampleCreator.saveStample
@@ -41,15 +41,15 @@ class TestStampleCreation extends StampleCreationComponents with StampleData wit
 
       And("stample content should be consistent with datas")
       assert(maximisedStample.isReminderSet)
-      assert(maximisedStample.title === title)
-      assert(maximisedStample.summary === summary) // test doesn't pass with it
-      assert(maximisedStample.description === description)
-      assert(maximisedStample.getNthCommentContent(0) === comment)
+      assert(maximisedStample.title === baseStample.title)
+      assert(maximisedStample.summary === baseStample.summary) // test doesn't pass with it
+      assert(maximisedStample.description === baseStample.description)
+      assert(maximisedStample.getNthCommentContent(0) === baseStample.comments(0))
       assert(maximisedStample.descriptionContainsImg)
       assert(maximisedStample.descriptionContainsIframe)
-      assert(maximisedStample.getNthTagName(0) === "#" + hashtag1)
-      assert(maximisedStample.getNthTagName(1) === "#" + hashtag2)
-      assert(filename contains maximisedStample.fileNthAttachedName(0))
+      assert(maximisedStample.getNthTagName(0) === "#" + baseStample.hashtags(0))
+      assert(maximisedStample.getNthTagName(1) === "#" + baseStample.hashtags(1))
+      assert(baseStample.attachments(0) contains maximisedStample.fileNthAttachedName(0))
     }
   }
 }
