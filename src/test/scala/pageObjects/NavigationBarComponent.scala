@@ -13,4 +13,6 @@ trait NavigationBarComponent {
   def openMyFavorites: Unit
 
   def openRecentAccesses: Unit
+
+  def isProfileContentDisplayed: Boolean
 }

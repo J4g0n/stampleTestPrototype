@@ -1,4 +1,4 @@
-package testUtils.testDatas
+package testDatas
 
 import testConfig.TestConfig
 

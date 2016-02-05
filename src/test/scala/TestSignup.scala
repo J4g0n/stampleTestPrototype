@@ -1,7 +1,5 @@
-import org.scalatest.{BeforeAndAfter, FeatureSpec, GivenWhenThen, Matchers}
-import testConfig.TestConfig
-import testUtils.{OnBoardingComponents, StamplePages}
-import testUtils.testDatas.UserDataProvider
+import testUtils.OnBoardingComponents
+import testDatas.UserDataProvider
 
 
 class TestSignup extends OnBoardingComponents with UserDataProvider {
@@ -13,12 +11,11 @@ class TestSignup extends OnBoardingComponents with UserDataProvider {
   feature("Sign up") {
 
     scenario("User sign up from homepage") {
-
       Given("User connect to the Stample homepage")
       homePage.openPage
 
       When("User fills sign in form and submit")
-      homePage.signUpWith(genRandomUser.email, genRandomUser.username, genRandomUser.firstname, genRandomUser.lastname, genRandomUser.password)
+      homePage.signUpWith(genRandomUser)
 
       Then("User should have access to its content on Stample")
       mainPage.stampleRootDisplayed
@@ -32,7 +29,7 @@ class TestSignup extends OnBoardingComponents with UserDataProvider {
       homePage.openPage
 
       When("User fills sign in form and submit")
-      homePage.signUpWith(baseUser.email, baseUser.username, baseUser.firstname, baseUser.lastname, baseUser.password)
+      homePage.signUpWith(baseUser)
       onBoarding.closeOnBoarding
 
       Then("User should have access to its content on Stample")

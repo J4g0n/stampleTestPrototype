@@ -40,3 +40,29 @@ trait HomePageImpl {
   }
 }
 
+
+
+
+
+trait Node {
+  val selector: String
+}
+
+case class Leaf(selector: String) extends Node
+
+
+
+object EntryPoint extends Node {
+  val selector = "#layout"
+  val topMenu = TopMenu
+}
+
+
+object TopMenu extends Node {
+  val selector = ".topMenu"
+  val searchInput: Leaf = Leaf(".search-input")
+}
+
+object Test {
+  EntryPoint.topMenu.searchInput
+}

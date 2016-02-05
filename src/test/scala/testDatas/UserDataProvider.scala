@@ -1,4 +1,4 @@
-package testUtils.testDatas
+package testDatas
 
 
 case class User(
@@ -10,7 +10,7 @@ case class User(
                )
 object User {
   def generateRandomUser = {
-    val userNb = (Math.random() * 1000000).toInt.toString
+    val userNb = (Math.random() * 10000000).toInt.toString
     new User(
       s"quelquun$userNb@stample.co",
       s"JoDalton$userNb",
@@ -26,5 +26,5 @@ object User {
 trait UserDataProvider {
   val baseUser = User.baseUser
 
-  val genRandomUser = User.generateRandomUser
+  def genRandomUser = User.generateRandomUser
 }

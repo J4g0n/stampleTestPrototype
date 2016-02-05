@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, GivenWhenThen, FeatureSpec}
 import testUtils.StampleMaximisedComponents
-import testUtils.testDatas.{UserDataProvider, StampleDataProvider}
+import testDatas.{UserDataProvider, StampleDataProvider}
 
 /**
   * Created by dev on 16/12/15.

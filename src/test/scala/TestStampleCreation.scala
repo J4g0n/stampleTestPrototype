@@ -1,7 +1,7 @@
 import org.scalatest.{FeatureSpec, GivenWhenThen, Matchers}
 import testConfig.TestConfig
 import testUtils.StampleCreationComponents
-import testUtils.testDatas.{UserDataProvider, StampleDataProvider}
+import testDatas.{UserDataProvider, StampleDataProvider}
 
 
 class TestStampleCreation extends StampleCreationComponents with StampleDataProvider with UserDataProvider {

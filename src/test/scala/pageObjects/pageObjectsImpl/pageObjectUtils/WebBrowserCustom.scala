@@ -1,13 +1,13 @@
 package pageObjects.pageObjectsImpl.pageObjectUtils
 
+import scala.util.{Failure, Success, Try}
+
 import objectLocatorRepository.objectMapUtils._
-import org.openqa.selenium.support.ui.{WebDriverWait, ExpectedConditions}
 import org.openqa.selenium.{JavascriptExecutor, WebDriver}
 import org.openqa.selenium.interactions.Actions
+import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.scalatest.selenium.WebBrowser
 import testConfig.TestConfig
-
-import scala.util.{Success, Failure, Try}
 
 
 trait WebBrowserCustom extends WebBrowser {

@@ -20,5 +20,7 @@ trait NavigationBarComponentImpl {
     def openMyFavorites = click on NAVIGATION_MY_FAVORITES_BUTTON
 
     def openRecentAccesses = click on NAVIGATION_MY_RECENT_ACCESSES_BUTTON
+
+    def isProfileContentDisplayed: Boolean = exists(NAVIGATION_MY_PROFILE_CONTENT)
   }
 }

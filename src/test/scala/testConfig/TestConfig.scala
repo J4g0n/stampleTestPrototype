@@ -17,10 +17,10 @@ object Browser extends Enumeration {
 }
 
 object BaseUrl extends Enumeration {
-  val LOCALHOST = Value("http://localhost:9000")
+  val LOCALHOST = Value("localhost:9000")
   val STAGING = Value("http://staging.stample.co")
   val DEV = Value("https://dev.stample.co")
-  val PROD = Value("http://stample.co")
+  val PROD = Value("https://stample.co")
 }
 
 case class SeleniumConfig(

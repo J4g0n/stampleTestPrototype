@@ -74,7 +74,9 @@ trait StampleCreationComponents extends StamplePages {
 
 trait NavigationComponents extends StamplePages {
   private val allObjects = AllObjects.allObjects
-  
+
+  val onBoarding = allObjects.onBoardingComponent
+
   val navigationBar = allObjects.navigationBarComponent
   val timeline = allObjects.timelineComponent
 }
