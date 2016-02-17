@@ -44,7 +44,7 @@ trait HomePageImpl {
 
 
 
-trait Node {
+/*trait Node {
   val selector: String
 }
 
@@ -65,4 +65,4 @@ object TopMenu extends Node {
 
 object Test {
   EntryPoint.topMenu.searchInput
-}
+}*/

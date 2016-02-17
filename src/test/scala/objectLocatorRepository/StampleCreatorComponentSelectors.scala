@@ -13,7 +13,6 @@ trait StampleCreatorComponentSelectors extends ObjectMapRepository {
   val STAMPLE_CREATOR_COMMENT_FIELD: Selector = "stampleCreator.comment"
   val STAMPLE_CREATOR_HASHTAG_BUTTON: Selector = "stampleCreator.hashtagButton"
   val STAMPLE_CREATOR_HASHTAG_FIELD: Selector = "stampleCreator.hashtag"
-  val STAMPLE_CREATOR_STRETCH_BUTTON: Selector = "stampleCreator.stretchButton"
   val STAMPLE_CREATOR_SAVE_BUTTON: Selector = "stampleCreator.saveButton"
   val STAMPLE_CREATOR_REMINDER_BUTTON: Selector = "stampleCreator.reminderButton"
   val STAMPLE_CREATOR_HASHTAG_REMOVE_BUTTON: Selector = "stampleCreator.hashtagRemove"

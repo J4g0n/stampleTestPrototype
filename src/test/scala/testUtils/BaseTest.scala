@@ -21,7 +21,6 @@ class AllObjects
   with DatePickerComponentImpl
   with VideoEmbeddedPopUpComponentImpl
   with MaximisedStampleComponentImpl
-  with OnBoardingComponentImpl
 object AllObjects {
   val allObjects = new AllObjects
 }
@@ -54,12 +53,6 @@ trait StampleMaximisedComponents extends StamplePages {
   val timeline = allObjects.timelineComponent
 }
 
-trait OnBoardingComponents extends StamplePages {
-  private val allObjects = AllObjects.allObjects
-
-  val onBoarding = allObjects.onBoardingComponent
-}
-
 trait StampleCreationComponents extends StamplePages {
   private val allObjects = AllObjects.allObjects
 
@@ -74,8 +67,6 @@ trait StampleCreationComponents extends StamplePages {
 
 trait NavigationComponents extends StamplePages {
   private val allObjects = AllObjects.allObjects
-
-  val onBoarding = allObjects.onBoardingComponent
 
   val navigationBar = allObjects.navigationBarComponent
   val timeline = allObjects.timelineComponent

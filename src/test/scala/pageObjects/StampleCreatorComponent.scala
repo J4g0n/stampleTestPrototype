@@ -23,8 +23,6 @@ trait StampleCreatorComponent {
 
   def removeNthTag(n: Int): Unit
 
-  def toggleMaximisedView: Unit
-
   def addEmbeddedVideo(videoUrl: String): Unit
 
   def changeFolder(date: String): Unit

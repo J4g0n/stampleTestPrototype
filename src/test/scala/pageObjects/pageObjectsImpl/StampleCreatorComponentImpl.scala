@@ -59,8 +59,6 @@ trait StampleCreatorComponentImpl {
       click on tagRemoveButton
     }
 
-    def toggleMaximisedView: Unit = click on STAMPLE_CREATOR_STRETCH_BUTTON
-
     def addEmbeddedVideo(videoUrl: String): Unit = {
       click on STAMPLE_CREATOR_VIDEO_EMBEDDED_BUTTON
       videoEmbeddedComponent.addUrl(videoUrl)
