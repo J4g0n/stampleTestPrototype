@@ -50,11 +50,8 @@ class TestStampleCreation extends StampleCreationComponents with StampleDataProv
             stampleCreator.saveStample
 
             Then("stample should appear on timeline")
-            Thread.sleep(1000)
             navigationBar.openMyLibraries
-            Thread.sleep(1000)
             mainContent.openNthLibrary(0)
-            Thread.sleep(1000)
             mainContent.openNthStample(0)
 
             And("stample content should be consistent with datas")

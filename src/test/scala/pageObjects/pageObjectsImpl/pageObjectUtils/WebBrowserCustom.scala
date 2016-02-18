@@ -61,8 +61,10 @@ trait WebBrowserCustom extends WebBrowser {
   }
 
   def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = {
-      Try {
-        findAll(s).drop(n).next
+    Try {
+        Thread.sleep(1000)
+        val elements = findAll(s)
+        elements.drop(n).next
       } match {
         case Failure(error) => throw new Error(s"Fail to find $n-th ${s.queryString} element with error: \n$error")
         case Success(element) => element

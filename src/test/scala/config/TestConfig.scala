@@ -141,7 +141,10 @@ object TestConfig {
   }
 
   private def setMaxTimeoutBetweenActions(webDriver: WebDriver, seconds: Int): WebDriver = {
-    webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+    // Declare all timeouts
+    webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS)
+    webDriver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS)
+    webDriver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS)
     webDriver
   }
 

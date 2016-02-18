@@ -60,11 +60,8 @@ class TestStampleMaximised extends StampleMaximisedComponents with StampleDataPr
 
 
         Then("Stample edited should be consistent with new datas")
-        Thread.sleep(1000)
         navigationBar.openMyLibraries
-        Thread.sleep(1000)
         mainContent.openNthLibrary(0)
-        Thread.sleep(1000)
         mainContent.openNthStample(0)
 
         And("stample content should be consistent with datas")
