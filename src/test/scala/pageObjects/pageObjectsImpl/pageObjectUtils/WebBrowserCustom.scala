@@ -62,7 +62,7 @@ trait WebBrowserCustom extends WebBrowser {
 
   def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = {
     Try {
-        Thread.sleep(1000)
+        Thread.sleep(2000)
         val elements = findAll(s)
         elements.drop(n).next
       } match {
