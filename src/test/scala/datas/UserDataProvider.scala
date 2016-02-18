@@ -22,7 +22,7 @@ object User {
 
   val baseUser = new User(
     "jodalton@stample.co",
-    "JoDalton",
+    "jodalton",
     "Jo",
     "Dalton",
     "password"
@@ -34,7 +34,7 @@ trait UserDataProvider {
 
   val testUser = new User(
     "jodalton@stample.co",
-    "JoDalton",
+    "jodalton",
     "Jo",
     "Dalton",
     "batterie"
