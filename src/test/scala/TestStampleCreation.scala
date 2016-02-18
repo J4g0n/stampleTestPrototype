@@ -7,7 +7,7 @@ import datas.{User, UserDataProvider, StampleDataProvider}
 class TestStampleCreation extends StampleCreationComponents with StampleDataProvider with UserDataProvider {
   def userHasSignedUp(user: User)(action: User => Any) = {
     homePage.openPage
-    homePage.signInWith(user.username, user.password)
+    homePage.signUpWith(user)
     action(user)
   }
 
@@ -27,7 +27,7 @@ class TestStampleCreation extends StampleCreationComponents with StampleDataProv
   info("I want to be able to create a new Stample")
 
   feature("Create Stample") {
-    userHasSignedUp(User.baseUser) { user =>
+    userHasSignedUp(User.generateRandomUser) { user =>
       userHasNavigatedToFirstLibrary(user) { baseUser =>
         userOpenedNewButtonMenu(user) { baseUser =>
           scenario("User create a Stample from timeline using new button") {
