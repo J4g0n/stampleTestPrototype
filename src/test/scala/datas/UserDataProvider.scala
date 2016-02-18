@@ -26,7 +26,7 @@ object User {
     "Jo",
     "Dalton",
     "password"
-    )
+  )
 }
 
 trait UserDataProvider {
@@ -37,7 +37,7 @@ trait UserDataProvider {
     "JoDalton",
     "Jo",
     "Dalton",
-    "password"
+    "batterie"
   )
 
   def genRandomUser = User.generateRandomUser

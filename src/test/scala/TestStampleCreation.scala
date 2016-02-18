@@ -27,7 +27,7 @@ class TestStampleCreation extends StampleCreationComponents with StampleDataProv
   info("I want to be able to create a new Stample")
 
   feature("Create Stample") {
-    userHasSignedUp(User.generateRandomUser) { user =>
+    userHasSignedUp(User.baseUser) { user =>
       userHasNavigatedToFirstLibrary(user) { baseUser =>
         userOpenedNewButtonMenu(user) { baseUser =>
           scenario("User create a Stample from timeline using new button") {
@@ -50,7 +50,6 @@ class TestStampleCreation extends StampleCreationComponents with StampleDataProv
             stampleCreator.saveStample
 
             Then("stample should appear on timeline")
-            Thread.sleep(1000)
             navigationBar.openMyLibraries
             mainContent.openNthLibrary(0)
             mainContent.openNthStample(0)
