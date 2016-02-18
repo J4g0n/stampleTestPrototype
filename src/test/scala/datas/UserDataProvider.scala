@@ -25,7 +25,7 @@ object User {
     "jodalton",
     "Jo",
     "Dalton",
-    "password"
+    "batterie"
   )
 }
 
