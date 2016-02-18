@@ -7,7 +7,7 @@ import datas.{User, UserDataProvider, StampleDataProvider}
 class TestStampleCreation extends StampleCreationComponents with StampleDataProvider with UserDataProvider {
   def userHasSignedUp(user: User)(action: User => Any) = {
     homePage.openPage
-    homePage.signInWith(user.email, user.password)
+    homePage.signInWith(user.username, user.password)
     action(user)
   }
 
