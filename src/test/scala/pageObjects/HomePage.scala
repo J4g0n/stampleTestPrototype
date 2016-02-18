@@ -1,6 +1,6 @@
 package pageObjects
 
-import testDatas.User
+import datas.User
 
 
 trait HomePage extends Page {

@@ -1,5 +1,5 @@
-import testUtils.StamplePages
-import testDatas.UserDataProvider
+import utils.StamplePages
+import datas.UserDataProvider
 
 
 class TestSignup extends StamplePages with UserDataProvider {

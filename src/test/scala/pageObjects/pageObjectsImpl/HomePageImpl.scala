@@ -3,7 +3,7 @@ package pageObjects.pageObjectsImpl
 import objectLocatorRepository.{HomepageSelectors, SignupPageSelectors, LoginPageSelectors}
 import pageObjects.HomePage
 import pageObjects.pageObjectsImpl.pageObjectUtils.BasePage
-import testConfig.TestConfig
+import config.TestConfig
 
 
 trait HomePageImpl {

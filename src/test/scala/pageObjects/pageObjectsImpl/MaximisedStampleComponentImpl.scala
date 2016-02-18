@@ -21,6 +21,7 @@ trait MaximisedStampleComponentImpl {
 
     // TODO should return Regexp => Unit to ensure actionName match text and language
     private def doActionOnStample: String => Unit = { actionName =>
+      scrollUp
       click on MAXIMISED_STAMPLE_MORE_BUTTON
       click on tryFindElementWithText(MORE_BUTTON_NAME, actionName)
     }

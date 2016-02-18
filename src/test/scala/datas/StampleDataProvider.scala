@@ -1,6 +1,6 @@
-package testDatas
+package datas
 
-import testConfig.TestConfig
+import config.TestConfig
 
 case class Stample(
                     title: String,
@@ -24,9 +24,9 @@ object Stample {
   val photo2: String = s"${resourcesPath}res/tournesol.png"
   val filename: String = s"${resourcesPath}res/rxjs.pdf"
   val comment: String = "Super comment for the win"
-  val hashtag1: String = "hahstag1"
-  val hashtag2: String = "hahstag2"
-  val hashtag3: String = "hahstag3"
+  val hashtag1: String = "hashtag1"
+  val hashtag2: String = "hashtag2"
+  val hashtag3: String = "hashtag3"
   val hashtag4: String = "HASHTAG4"
   val hashtag5: String = "HASHTAG5"
   val hashtag6: String = "HASHTAG6"

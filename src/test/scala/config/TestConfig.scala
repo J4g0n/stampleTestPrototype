@@ -1,4 +1,4 @@
-package testConfig
+package config
 
 import java.io.File
 import java.net.URL

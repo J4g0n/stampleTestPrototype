@@ -1,4 +1,4 @@
-package testDatas
+package datas
 
 
 case class User(
@@ -20,11 +20,25 @@ object User {
     )
   }
 
-  val baseUser = generateRandomUser
+  val baseUser = new User(
+    "jodalton@stample.co",
+    "JoDalton",
+    "Jo",
+    "Dalton",
+    "password"
+    )
 }
 
 trait UserDataProvider {
   val baseUser = User.baseUser
+
+  val testUser = new User(
+    "jodalton@stample.co",
+    "JoDalton",
+    "Jo",
+    "Dalton",
+    "password"
+  )
 
   def genRandomUser = User.generateRandomUser
 }

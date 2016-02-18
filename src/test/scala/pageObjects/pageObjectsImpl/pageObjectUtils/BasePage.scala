@@ -1,7 +1,7 @@
 package pageObjects.pageObjectsImpl.pageObjectUtils
 
 import pageObjects.Page
-import testConfig.TestConfig
+import config.TestConfig
 
 
 abstract class BasePage (val pageUrl: String = TestConfig.baseUrl) extends Page with WebBrowserCustom {

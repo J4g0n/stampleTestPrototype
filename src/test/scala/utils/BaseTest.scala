@@ -1,4 +1,4 @@
-package testUtils
+package utils
 
 import org.scalatest.{Matchers, GivenWhenThen, FeatureSpec}
 import pageObjects.pageObjectsImpl._
@@ -16,7 +16,7 @@ class AllObjects
   with HomePageImpl
   with NavigationBarComponentImpl
   with StampleCreatorComponentImpl
-  with TimelineComponentImpl
+  with MainContentComponentImpl
   with NewButtonComponentImpl
   with DatePickerComponentImpl
   with VideoEmbeddedPopUpComponentImpl
@@ -38,7 +38,7 @@ trait AllComponents extends BaseTestSetup {
 
   val navigationBar = allObjects.navigationBarComponent
   val newButton = allObjects.newButtonComponent
-  val timeline = allObjects.timelineComponent
+  val mainContent = allObjects.mainContent
   val stampleCreator = allObjects.stampleCreatorComponent
   val datePicker = allObjects.datepickerComponent
 }
@@ -50,7 +50,7 @@ trait StampleMaximisedComponents extends StamplePages {
   val maximisedStample = allObjects.maximisedStampleComponent
 
   val navigationBar = allObjects.navigationBarComponent
-  val timeline = allObjects.timelineComponent
+  val mainContent = allObjects.mainContent
 }
 
 trait StampleCreationComponents extends StamplePages {
@@ -62,12 +62,12 @@ trait StampleCreationComponents extends StamplePages {
   // TODO Used for verification maybe it should change
   val navigationBar = allObjects.navigationBarComponent
   val maximisedStample = allObjects.maximisedStampleComponent
-  val timeline = allObjects.timelineComponent
+  val mainContent = allObjects.mainContent
 }
 
 trait NavigationComponents extends StamplePages {
   private val allObjects = AllObjects.allObjects
 
   val navigationBar = allObjects.navigationBarComponent
-  val timeline = allObjects.timelineComponent
+  val mainContent = allObjects.mainContent
 }

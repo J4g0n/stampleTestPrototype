@@ -14,11 +14,7 @@ trait NewButtonComponentImpl {
 
   class DefaultNewButtonComponentImpl extends BaseComponent with NewButtonComponent with NewButtonComponentSelectors {
     def openStampleCreator = {
-      hover(NEW_BUTTON)
-      Thread.sleep(500) // Required because of css animation, that sucks...
       click on NEW_STAMPLE
-
-      stampleCreatorComponent
     }
   }
 }

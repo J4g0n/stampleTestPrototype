@@ -7,7 +7,7 @@ import org.openqa.selenium.{JavascriptExecutor, WebDriver}
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.scalatest.selenium.WebBrowser
-import testConfig.TestConfig
+import config.TestConfig
 
 
 trait WebBrowserCustom extends WebBrowser {

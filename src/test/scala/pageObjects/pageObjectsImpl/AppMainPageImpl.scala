@@ -2,7 +2,7 @@ package pageObjects.pageObjectsImpl
 
 import pageObjects.AppMainPage
 import pageObjects.pageObjectsImpl.pageObjectUtils.BasePage
-import testConfig.TestConfig
+import config.TestConfig
 
 
 trait AppMainPageImpl {
@@ -10,7 +10,7 @@ trait AppMainPageImpl {
     with HomePageImpl
     with StampleCreatorComponentImpl
     with NavigationBarComponentImpl
-    with TimelineComponentImpl =>
+    with MainContentComponentImpl =>
 
   val appMainPage: AppMainPage = new DefaultAppMainPageImpl
 

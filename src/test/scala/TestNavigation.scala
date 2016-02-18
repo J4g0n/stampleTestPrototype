@@ -1,5 +1,5 @@
-import testUtils.NavigationComponents
-import testDatas.{User, UserDataProvider}
+import utils.NavigationComponents
+import datas.{User, UserDataProvider}
 
 
 class TestNavigation extends NavigationComponents with UserDataProvider {
@@ -37,7 +37,7 @@ class TestNavigation extends NavigationComponents with UserDataProvider {
 
         When("User click on home button")
         navigationBar.openMyLibraries
-        timeline.openNthLibrary(0)
+        mainContent.openNthLibrary(0)
 
         Then("User should have access to its content on Stample")
         // TODO assert something here that proves that everything went fine
