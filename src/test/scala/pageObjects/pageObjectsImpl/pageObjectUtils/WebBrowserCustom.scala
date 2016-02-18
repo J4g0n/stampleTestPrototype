@@ -62,16 +62,23 @@ trait WebBrowserCustom extends WebBrowser {
 
   def findNthElement(s: this.Query, n: Int)(implicit webDriver: WebDriver): this.Element = {
     Try {
-        Thread.sleep(2000)
-        val elements = findAll(s)
-        elements.drop(n).next
-      } match {
-        case Failure(error) => throw new Error(s"Fail to find $n-th ${s.queryString} element with error: \n$error")
-        case Success(element) => element
-      }
+      // TODO i added Thread.sleep before every find all because it doesn't wait for possible element to be loaded which can be tricky to check
+      // TODO we may want to check for ajax request to be over and all elements to be rendered before performing this action
+      // TODO see: http://stackoverflow.com/questions/24298925/how-to-checkif-there-are-pending-requests-ajax-and-its-variants-from-browser
+      Thread.sleep(2000)
+      val elements = findAll(s)
+      elements.drop(n).next
+    } match {
+      case Failure(error) => throw new Error(s"Fail to find $n-th ${s.queryString} element with error: \n$error")
+      case Success(element) => element
+    }
   }
 
-  def tryFindElementWithText(s: this.Query, actionName: String)(implicit webDriver: WebDriver): this.Element = findAll(s).find(_.text.toLowerCase == actionName).getOrElse(throw new Error("Impossible to get by text element for query: " + s + " and text " + actionName))
+  def tryFindElementWithText(s: this.Query, actionName: String)(implicit webDriver: WebDriver): this.Element = {
+    // TODO same problem as above
+    Thread.sleep(2000)
+    findAll(s).find(_.text.toLowerCase == actionName).getOrElse(throw new Error("Impossible to get by text element for query: " + s + " and text " + actionName))
+  }
 
   def tryClear(query: this.Query)(implicit webDriver: WebDriver): Unit = {
     find(query)
