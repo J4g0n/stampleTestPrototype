@@ -54,7 +54,3 @@ On mac, open terminal and do:
 ## On phantomJS (there are bugs but it can be fixed i just need to figure it out): 
 TODO: currently it is a little bit problematic we have to solve this bug
 https://github.com/ariya/phantomjs/issues/11637
-
-## /!\ Advices:
-When testing locally, you should KEEP YOUR MOUSE CURSOR OUTSIDE the browser window, 
-else browser will detect it and behavior can change with no error message
